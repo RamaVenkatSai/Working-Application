@@ -82,9 +82,6 @@ export const schema = {
                     type: 'boolean',
                     title: 'Receive email notifications',
                     lime: {
-                        component: {
-                            name: 'limel-switch',
-                        },
                         layout: {
                             icon: 'filled_message',
                         },

@@ -5,6 +5,7 @@ import { FieldProps } from './types';
 import { isEmpty, capitalize } from 'lodash-es';
 import { resetDependentFields } from './field-helpers';
 import { FieldTemplate } from '../templates';
+import { FormComponent } from '../form.types';
 
 /**
  * If given a value and schema, check if the value should be translated
@@ -99,6 +100,23 @@ export class SchemaField extends React.Component<FieldProps> {
         this.initState();
     }
 
+    componentDidMount() {
+        const slottedElement = this.findSlottedElement();
+        if (!slottedElement) {
+            return;
+        }
+
+        const formElement: HTMLLimelFormElement =
+            this.props.registry.formContext.element;
+        formElement.addEventListener('change', this.handleSlottedChange);
+    }
+
+    componentWillUnmount() {
+        const formElement: HTMLLimelFormElement =
+            this.props.registry.formContext.element;
+        formElement.removeEventListener('change', this.handleSlottedChange);
+    }
+
     private initState() {
         if (this.hasValue()) {
             this.state.modified = true;
@@ -167,7 +185,20 @@ export class SchemaField extends React.Component<FieldProps> {
         return formData;
     }
 
-    private handleCustomComponentChange(event) {
+    private handleSlottedChange = (event: unknown) => {
+        if (
+            event instanceof CustomEvent &&
+            event.target !== event.currentTarget
+        ) {
+            const element = event.target as Element;
+
+            if (element.slot === this.getSlotName()) {
+                this.handleCustomComponentChange(event);
+            }
+        }
+    };
+
+    private handleCustomComponentChange(event: CustomEvent) {
         const { schema } = this.props;
         event.stopPropagation();
 
@@ -261,15 +292,64 @@ export class SchemaField extends React.Component<FieldProps> {
             return this.renderCustomComponent(this.props);
         }
 
+        const slottedElement = this.findSlottedElement();
+
+        if (slottedElement) {
+            this.updateSlotted(slottedElement);
+
+            const slot = React.createElement('slot', {
+                name: this.getSlotName(),
+            });
+
+            return React.createElement(
+                FieldTemplate,
+                {
+                    ...this.props,
+                    classNames: 'form-group field field-custom',
+                },
+                slot
+            );
+        }
+
         const fieldProps = {
             ...this.props,
             onChange: this.handleChange,
         };
 
-        return React.createElement(
-            'slot',
-            { name: this.props.name },
-            React.createElement(JSONSchemaField, fieldProps)
+        return React.createElement(JSONSchemaField, fieldProps);
+    }
+
+    private findSlottedElement(): FormComponent | undefined {
+        const formElement: HTMLLimelFormElement =
+            this.props.registry.formContext.element;
+
+        const elements = Array.from(
+            formElement.querySelectorAll(`[slot$='${this.props.name}']`)
+        );
+
+        return elements.find(
+            (element): element is Element & FormComponent =>
+                this.getSlotName() === element.slot
+        );
+    }
+
+    private updateSlotted(element: FormComponent) {
+        element.value = this.getValue();
+        element.required = this.isRequired();
+        element.disabled = this.props.disabled;
+        (element as any).invalid = this.isInvalid();
+        element.label = this.getLabel();
+        const helperText = this.getHelperText();
+        if (helperText) {
+            element.helperText = helperText;
+        }
+    }
+
+    private getSlotName() {
+        const schemaId: string | undefined = this.props.idSchema?.$id;
+
+        return (
+            schemaId && schemaId.replace('root_', '').replace(/_(\d+_)?/g, '.')
         );
     }
 
