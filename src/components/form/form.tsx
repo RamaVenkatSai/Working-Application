@@ -118,6 +118,7 @@ export class Form {
 
     public connectedCallback() {
         this.initialize();
+        this.host.addEventListener('change', this.handleSlottedChange);
     }
 
     public componentWillLoad() {
@@ -149,6 +150,8 @@ export class Form {
         if (rootElement) {
             unmountComponentAtNode(rootElement);
         }
+
+        this.host.removeEventListener('change', this.handleSlottedChange);
     }
 
     public render() {
@@ -156,6 +159,8 @@ export class Form {
     }
 
     private reactRender() {
+        this.updateSlotted();
+
         const rootElement = this.host.shadowRoot.querySelector('.root');
 
         render(
@@ -189,6 +194,36 @@ export class Form {
             ),
             rootElement
         );
+    }
+
+    private updateSlotted() {
+        const elements = Array.from(this.host.querySelectorAll('*'));
+        for (const element of elements) {
+            if (this.isFormField(element)) {
+                element.value = this.value[element.slot];
+            }
+        }
+    }
+
+    private handleSlottedChange = (event: unknown) => {
+        if (
+            event instanceof CustomEvent &&
+            event.target !== event.currentTarget
+        ) {
+            event.stopPropagation();
+            const element = event.target as Element;
+
+            if (this.isFormField(element)) {
+                this.change.emit({
+                    ...this.value,
+                    [element.slot]: event.detail,
+                });
+            }
+        }
+    };
+
+    private isFormField(element: Element): element is Element & { value: any } {
+        return element.slot !== '' && element.slot in this.value;
     }
 
     private handleChange(event: any) {

@@ -266,7 +266,11 @@ export class SchemaField extends React.Component<FieldProps> {
             onChange: this.handleChange,
         };
 
-        return React.createElement(JSONSchemaField, fieldProps);
+        return React.createElement(
+            'slot',
+            { name: this.props.name },
+            React.createElement(JSONSchemaField, fieldProps)
+        );
     }
 
     /**
