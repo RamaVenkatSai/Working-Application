@@ -118,7 +118,6 @@ export class Form {
 
     public connectedCallback() {
         this.initialize();
-        this.host.addEventListener('change', this.handleSlottedChange);
     }
 
     public componentWillLoad() {
@@ -150,8 +149,6 @@ export class Form {
         if (rootElement) {
             unmountComponentAtNode(rootElement);
         }
-
-        this.host.removeEventListener('change', this.handleSlottedChange);
     }
 
     public render() {
@@ -181,7 +178,6 @@ export class Form {
                         schema: this.modifiedSchema,
                         rootValue: this.value,
                         propsFactory: this.propsFactory,
-                        element: this.host,
                     },
                     fields: {
                         SchemaField: CustomSchemaField as any,
@@ -194,15 +190,6 @@ export class Form {
             rootElement
         );
     }
-
-    private handleSlottedChange = (event: unknown) => {
-        if (
-            event instanceof CustomEvent &&
-            event.target !== event.currentTarget
-        ) {
-            event.stopPropagation();
-        }
-    };
 
     private handleChange(event: any) {
         this.change.emit(event.formData);

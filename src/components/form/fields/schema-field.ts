@@ -92,6 +92,8 @@ export class SchemaField extends React.Component<FieldProps> {
         modified: false,
     };
 
+    private slot = React.createRef<HTMLSlotElement>();
+
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
@@ -102,19 +104,34 @@ export class SchemaField extends React.Component<FieldProps> {
 
     componentDidMount() {
         const slottedElement = this.findSlottedElement();
+
         if (!slottedElement) {
             return;
         }
 
-        const formElement: HTMLLimelFormElement =
-            this.props.registry.formContext.element;
-        formElement.addEventListener('change', this.handleSlottedChange);
+        slottedElement.addEventListener('change', this.handleSlottedChange);
+
+        this.updateSlotted(slottedElement as Element & FormComponent);
+    }
+
+    componentDidUpdate() {
+        const slottedElement = this.findSlottedElement();
+
+        if (!slottedElement) {
+            return;
+        }
+
+        this.updateSlotted(slottedElement as Element & FormComponent);
     }
 
     componentWillUnmount() {
-        const formElement: HTMLLimelFormElement =
-            this.props.registry.formContext.element;
-        formElement.removeEventListener('change', this.handleSlottedChange);
+        const slottedElement = this.findSlottedElement();
+
+        if (!slottedElement) {
+            return;
+        }
+
+        slottedElement.removeEventListener('change', this.handleSlottedChange);
     }
 
     private initState() {
@@ -185,17 +202,8 @@ export class SchemaField extends React.Component<FieldProps> {
         return formData;
     }
 
-    private handleSlottedChange = (event: unknown) => {
-        if (
-            event instanceof CustomEvent &&
-            event.target !== event.currentTarget
-        ) {
-            const element = event.target as Element;
-
-            if (element.slot === this.getSlotName()) {
-                this.handleCustomComponentChange(event);
-            }
-        }
+    private handleSlottedChange = (event: CustomEvent) => {
+        this.handleCustomComponentChange(event);
     };
 
     private handleCustomComponentChange(event: CustomEvent) {
@@ -292,45 +300,23 @@ export class SchemaField extends React.Component<FieldProps> {
             return this.renderCustomComponent(this.props);
         }
 
-        const slottedElement = this.findSlottedElement();
-
-        if (slottedElement) {
-            this.updateSlotted(slottedElement);
-
-            const slot = React.createElement('slot', {
-                name: this.getSlotName(),
-            });
-
-            return React.createElement(
-                FieldTemplate,
-                {
-                    ...this.props,
-                    classNames: 'form-group field field-custom',
-                },
-                slot
-            );
-        }
-
         const fieldProps = {
             ...this.props,
             onChange: this.handleChange,
         };
 
-        return React.createElement(JSONSchemaField, fieldProps);
+        return React.createElement(
+            'slot',
+            {
+                name: this.getSlotName(),
+                ref: this.slot,
+            },
+            React.createElement(JSONSchemaField, fieldProps)
+        );
     }
 
-    private findSlottedElement(): FormComponent | undefined {
-        const formElement: HTMLLimelFormElement =
-            this.props.registry.formContext.element;
-
-        const elements = Array.from(
-            formElement.querySelectorAll(`[slot$='${this.props.name}']`)
-        );
-
-        return elements.find(
-            (element): element is Element & FormComponent =>
-                this.getSlotName() === element.slot
-        );
+    private findSlottedElement(): Element | undefined {
+        return this.slot.current?.assignedElements()[0];
     }
 
     private updateSlotted(element: FormComponent) {
