@@ -305,10 +305,16 @@ export class SchemaField extends React.Component<FieldProps> {
             onChange: this.handleChange,
         };
 
+        const slotName = this.getSlotName();
+
+        if (!slotName) {
+            return React.createElement(JSONSchemaField, fieldProps);
+        }
+
         return React.createElement(
             'slot',
             {
-                name: this.getSlotName(),
+                name: slotName,
                 ref: this.slot,
             },
             React.createElement(JSONSchemaField, fieldProps)
@@ -316,7 +322,11 @@ export class SchemaField extends React.Component<FieldProps> {
     }
 
     private findSlottedElement(): Element | undefined {
-        return this.slot.current?.assignedElements()[0];
+        const slottedElement = this.slot.current?.assignedElements()[0];
+
+        if (slottedElement && slottedElement.slot) {
+            return slottedElement;
+        }
     }
 
     private updateSlotted(element: FormComponent) {
@@ -333,6 +343,10 @@ export class SchemaField extends React.Component<FieldProps> {
 
     private getSlotName() {
         const schemaId: string | undefined = this.props.idSchema?.$id;
+
+        if (schemaId === 'root') {
+            return;
+        }
 
         return (
             schemaId && schemaId.replace('root_', '').replace(/_(\d+_)?/g, '.')
