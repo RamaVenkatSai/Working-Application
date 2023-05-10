@@ -38,6 +38,7 @@ import { mapValues } from 'lodash-es';
  * @exampleComponent limel-example-custom-error-message
  * @exampleComponent limel-example-server-errors
  * @exampleComponent limel-example-form-row-layout
+ * @exampleComponent limel-example-form-with-help
  */
 @Component({
     tag: 'limel-form',

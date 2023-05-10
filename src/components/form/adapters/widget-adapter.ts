@@ -97,6 +97,22 @@ export class LimeElementsWidgetAdapter extends React.Component {
         return value || widgetValue;
     }
 
+    private getHelperComponent() {
+        const help = this.props.widgetProps.schema?.lime?.help;
+
+        if (!help) {
+            return;
+        }
+
+        const helpProps =
+            typeof help === 'string' ? { content: help } : { ...help };
+
+        return React.createElement(LimeElementsAdapter, {
+            name: 'limel-help',
+            elementProps: helpProps,
+        });
+    }
+
     render() {
         const { name, events, extraProps } = this.props;
         const disabled = this.isDisabled();
@@ -109,20 +125,23 @@ export class LimeElementsWidgetAdapter extends React.Component {
             ...events,
         };
 
-        return React.createElement(LimeElementsAdapter, {
-            name: name,
-            elementProps: {
-                value: value,
-                label: this.getLabel(),
-                disabled: disabled,
-                readonly: readonly,
-                required: this.isRequired(),
-                invalid: this.isInvalid(),
-                'helper-text': this.getHelperText(),
-                ...extraProps,
-            },
-            events: newEvents,
-        });
+        return [
+            React.createElement(LimeElementsAdapter, {
+                name: name,
+                elementProps: {
+                    value: value,
+                    label: this.getLabel(),
+                    disabled: disabled,
+                    readonly: readonly,
+                    required: this.isRequired(),
+                    invalid: this.isInvalid(),
+                    'helper-text': this.getHelperText(),
+                    ...extraProps,
+                },
+                events: newEvents,
+            }),
+            this.getHelperComponent(),
+        ];
     }
 
     private isDisabled() {
