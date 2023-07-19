@@ -75,7 +75,7 @@ export class Snackbar {
      * Whether to show the snackbar with space for multiple lines of text
      */
     @Prop()
-    public multiline: boolean;
+    public multiline?: boolean;
 
     /**
      * Defines the language for translations.
