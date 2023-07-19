@@ -72,7 +72,10 @@ export class Snackbar {
     public dismissible: boolean = true;
 
     /**
-     * Whether to show the snackbar with space for multiple lines of text
+     * When `true`, the layout of the Snackbar will change.
+     * The action and the dismiss buttons will be rendered in a
+     * row below the text, instead of being rendered as trailing elements.
+     * This might be useful for Snackbars with very long messages.
      */
     @Prop()
     public multiline?: boolean;
