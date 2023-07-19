@@ -183,27 +183,27 @@ export class Snackbar {
 
         return (
             <div class="mdc-snackbar__actions" aria-atomic="true">
-                {this.renderActionButton(actionText)}
-                {this.renderDismissButton(dismissible)}
+                {this.renderActionButton()}
+                {this.renderDismissButton()}
             </div>
         );
     }
 
-    private renderActionButton(actionText: string) {
-        if (!actionText) {
+    private renderActionButton() {
+        if (!this.actionText) {
             return;
         }
 
         return (
             <limel-button
                 class="mdc-button mdc-snackbar__action"
-                label={actionText}
+                label={this.actionText}
             />
         );
     }
 
-    private renderDismissButton(dismissible: boolean) {
-        if (!dismissible) {
+    private renderDismissButton() {
+        if (!this.dismissible) {
             return;
         }
 
