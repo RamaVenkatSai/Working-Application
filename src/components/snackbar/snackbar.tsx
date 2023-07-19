@@ -35,6 +35,8 @@ import translate from '../../global/translations';
  * @exampleComponent limel-example-snackbar
  * @exampleComponent limel-example-snackbar-dismissible
  * @exampleComponent limel-example-snackbar-with-action
+ * @exampleComponent limel-example-snackbar-persistent
+ * @exampleComponent limel-example-snackbar-persistent-non-dismissible
  * @exampleComponent limel-example-snackbar-with-changing-messages
  * @exampleComponent limel-example-snackbar-positioning
  */
@@ -70,6 +72,14 @@ export class Snackbar {
      */
     @Prop()
     public dismissible: boolean = true;
+
+    /**
+     * When `true`, the Snackbar will remain visible in the UI,
+     * meaning the countdown visualization will not be displayed
+     * and the timeout will be cancelled.
+     */
+    @Prop()
+    public persistent: boolean = false;
 
     /**
      * When `true`, the layout of the Snackbar will change.
@@ -136,8 +146,12 @@ export class Snackbar {
      */
     @Method()
     public async show() {
-        if (this.timeout) {
-            this.mdcSnackbar.timeoutMs = this.timeout;
+        if (this.persistent) {
+            this.mdcSnackbar.timeoutMs = -1;
+        } else {
+            if (this.timeout) {
+                this.mdcSnackbar.timeoutMs = this.timeout;
+            }
         }
 
         this.mdcSnackbar.labelText = this.message;
@@ -158,7 +172,7 @@ export class Snackbar {
             >
                 <div
                     class="mdc-snackbar__surface"
-                    role="status"
+                    role={`${this.persistent ? 'alertdialog' : 'status'}`}
                     aria-relevant="additions"
                 >
                     <div class="mdc-snackbar__label" aria-atomic="false"></div>
@@ -222,6 +236,10 @@ export class Snackbar {
     }
 
     private renderTimeoutVisualization() {
+        if (this.persistent) {
+            return;
+        }
+
         return (
             <svg width="36" height="36" viewBox="0 0 36 36">
                 <circle r="18" cx="18" cy="18" fill="var(--track-color)" />
