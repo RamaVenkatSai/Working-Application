@@ -1,4 +1,4 @@
-import { Component, Element, State, forceUpdate, h } from '@stencil/core';
+import { Component, Element, State, h } from '@stencil/core';
 
 /**
  * Persistent and non-dismissible
