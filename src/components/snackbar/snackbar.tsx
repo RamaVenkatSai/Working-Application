@@ -125,6 +125,14 @@ export class Snackbar {
         this.initialize();
     }
 
+    public componentWillRender() {
+        if (!this.persistent) {
+            this.mdcSnackbar.close();
+        } else if (!!this.mdcSnackbar && !this.mdcSnackbar.isOpen) {
+            this.mdcSnackbar.open();
+        }
+    }
+
     private initialize() {
         const element = this.host.shadowRoot.querySelector('.mdc-snackbar');
         if (!element) {
@@ -148,10 +156,8 @@ export class Snackbar {
     public async show() {
         if (this.persistent) {
             this.mdcSnackbar.timeoutMs = -1;
-        } else {
-            if (this.timeout) {
-                this.mdcSnackbar.timeoutMs = this.timeout;
-            }
+        } else if (this.timeout) {
+            this.mdcSnackbar.timeoutMs = this.timeout;
         }
 
         this.mdcSnackbar.labelText = this.message;

@@ -1,4 +1,4 @@
-import { Component, Element, State, h } from '@stencil/core';
+import { Component, Element, State, forceUpdate, h } from '@stencil/core';
 
 /**
  * Persistent and non-dismissible
@@ -22,11 +22,10 @@ export class SnackbarPersistentNonDismissibleExample {
     @State()
     private persistent: boolean = true;
 
+    private isShowingSnackbar: boolean = false;
+
     constructor() {
-        this.triggerSnackbarWithAction = this.triggerSnackbar.bind(
-            this,
-            'limel-snackbar'
-        );
+        this.triggerSnackbarWithAction = this.triggerSnackbar.bind(this);
     }
 
     public render() {
@@ -52,14 +51,20 @@ export class SnackbarPersistentNonDismissibleExample {
         ];
     }
 
-    private triggerSnackbar(selector) {
-        const snackbar: HTMLLimelSnackbarElement =
-            this.host.shadowRoot.querySelector(selector);
-        snackbar.show();
+    private triggerSnackbar() {
+        if (!this.isShowingSnackbar) {
+            this.snackbarElement.show();
+        }
+
+        this.isShowingSnackbar = true;
     }
 
     private handleChange = (event: CustomEvent<boolean>) => {
         event.stopPropagation();
         this.persistent = event.detail;
     };
+
+    private get snackbarElement(): HTMLLimelSnackbarElement {
+        return this.host.shadowRoot.querySelector('limel-snackbar');
+    }
 }
