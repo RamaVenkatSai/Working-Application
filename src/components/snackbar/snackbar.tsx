@@ -182,7 +182,7 @@ export class Snackbar {
                     aria-relevant="additions"
                 >
                     <div class="mdc-snackbar__label" aria-atomic="false"></div>
-                    {this.renderActions(this.actionText, this.dismissible)}
+                    {this.renderActions()}
                 </div>
             </aside>
         );
@@ -196,8 +196,8 @@ export class Snackbar {
         }
     }
 
-    private renderActions(actionText: string, dismissible: boolean) {
-        if (!actionText && !dismissible) {
+    private renderActions() {
+        if (!this.actionText && !this.dismissible) {
             return;
         }
 
