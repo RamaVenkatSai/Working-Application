@@ -9,7 +9,7 @@ import { Component, Element, h } from '@stencil/core';
  * an action or clicks the dismiss button. This could be to ensure that
  *
  * - the user actually reads message that is being displayed.
- * - has time to take an informed decision to press the action button.
+ * - the user has time to take an informed decision to press the action button.
  */
 @Component({
     tag: 'limel-example-snackbar-persistent',
