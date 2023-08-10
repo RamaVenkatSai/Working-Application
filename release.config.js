@@ -24,7 +24,6 @@ module.exports = {
                 writerOpts: {
                     commitPartial: readFileSync(join(__dirname, 'commit.hbs'), 'utf-8'),
                     transform: (commit, context) => {
-                        // console.log('commit to transform:', JSON.stringify(commit, null, 2), 'context:', JSON.stringify(context, null, 2));
                         const isReleaseType = !!(['feat', 'fix', 'perf', 'revert', 'docs'].find((type) => type === commit.type));
                         const hasNote = commit.notes.length > 0;
                         if (typeof commit.body === 'string') {
