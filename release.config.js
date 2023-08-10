@@ -57,5 +57,5 @@ module.exports = {
             },
         ],
     ],
-    npmPublish: true,
+    npmPublish: false,
 };
