@@ -1,3 +1,83 @@
+# [37.1.0-dev.1](https://github.com/Lundalogik/lime-elements/compare/v37.0.0...v37.1.0-dev.1) (2023-08-10)
+
+
+### docs
+
+* docs(changelog.md): include more of the commit messages in the changelog ([427010cabdbbf87fc2b96ef35779061286333cd9](https://github.com/Lundalogik/lime-elements/commit/427010cabdbbf87fc2b96ef35779061286333cd9))
+
+* docs(checkbox): add description about the component ([1179dd0e5458b84350f14cc85ca794239e8f0dab](https://github.com/Lundalogik/lime-elements/commit/1179dd0e5458b84350f14cc85ca794239e8f0dab))
+
+* docs(makeEnterClickable): add docstring ([3341fd9f151b095bc4cc09e2d3c150908db4c1f3](https://github.com/Lundalogik/lime-elements/commit/3341fd9f151b095bc4cc09e2d3c150908db4c1f3))
+
+* docs(switch): add description about the component ([78163cedb6eb30aa240eb7283811fd4d7b0d016c](https://github.com/Lundalogik/lime-elements/commit/78163cedb6eb30aa240eb7283811fd4d7b0d016c))
+
+* docs(switch): describe the difference between Switch & Checkbox ([6ca6b05543641402f3240cd41a3d109533134b10](https://github.com/Lundalogik/lime-elements/commit/6ca6b05543641402f3240cd41a3d109533134b10))
+
+
+
+### feat
+
+* feat(action-bar): add new component ([8faae2a98f918f9c075d6192ec23d5c0aa28ecfd](https://github.com/Lundalogik/lime-elements/commit/8faae2a98f918f9c075d6192ec23d5c0aa28ecfd))
+
+* feat(button-like-components): add helper function for enter clicking ([a245649ab659cad54886147830d2f1e82f4a1ea8](https://github.com/Lundalogik/lime-elements/commit/a245649ab659cad54886147830d2f1e82f4a1ea8))
+Added helper function that you would put in componentWillLoad that
+adds the event listeners needed to make buttons clickable with enter
+Co-authored-by: Johan Groth <johan.groth@lime.tech>
+
+* feat(collapsible-section): make enter clickable ([a66e820f3a05bae26e42bace2ea5f12f6b4d777d](https://github.com/Lundalogik/lime-elements/commit/a66e820f3a05bae26e42bace2ea5f12f6b4d777d))
+Overrides the default browser behavior on enter,
+so that it doesn't repeatedly click when you hold it down
+Co-authored-by: Kiarokh Moattar <kiarokh@icloud.com>
+
+* feat(getRandomString): update to use crypto.UUID() ([7d8ce2eb2caeacbc022032cfbc17f02b6057295e](https://github.com/Lundalogik/lime-elements/commit/7d8ce2eb2caeacbc022032cfbc17f02b6057295e))
+Fallback onto legacy code, as support for crypto.UUID() is not universal
+
+* feat(icon-button): override default browser behavior on clicking enter ([6560325e9aee66336f64d0c4aff8622b767574a8](https://github.com/Lundalogik/lime-elements/commit/6560325e9aee66336f64d0c4aff8622b767574a8))
+Overrides the default browser behavior
+So that, when clicking enter, the switch does not
+get repeatedly clicked, but only once
+
+* feat(switch): add possibility to have a `helperText` ([9e44bc2a6a59134b83b77b233440a042e4b3536a](https://github.com/Lundalogik/lime-elements/commit/9e44bc2a6a59134b83b77b233440a042e4b3536a))
+
+* feat(switch): override default browser behavior on clicking enter ([1633f0fd602ea90cf99a4e02598269116bc3b83b](https://github.com/Lundalogik/lime-elements/commit/1633f0fd602ea90cf99a4e02598269116bc3b83b))
+Overrides the default browser behavior
+So that, when clicking enter, the switch does not
+get repeatedly clicked, but only once
+
+
+
+### fix
+
+* fix(checkbox): create a unique id for the helper text & use it by `aria` attributes ([38e4d295d4cc265d299d5d8c7bb5dbd28aefc284](https://github.com/Lundalogik/lime-elements/commit/38e4d295d4cc265d299d5d8c7bb5dbd28aefc284))
+The `aria-controls` and `aria-describedby` are using these IDs
+to give clues to assistive technologies.
+In the former implementation, we were lacking ids
+for the helper text elements.
+
+* fix(color-palette): make swatches interactive & navigable using the `Tab` & `Enter` keys ([fb7168d4ee4ecb44e10620d3d3b577badb6e36f7](https://github.com/Lundalogik/lime-elements/commit/fb7168d4ee4ecb44e10620d3d3b577badb6e36f7))
+
+* fix(color-picker): enable opening the color palette using the `Enter` key ([b2a323c237a8f9f6f7ab50004ca24d6a6cae94d3](https://github.com/Lundalogik/lime-elements/commit/b2a323c237a8f9f6f7ab50004ca24d6a6cae94d3))
+
+* fix(icon-cache): can't always open the icon cache ([2feb72657e2f34113513160d4a5e14c787c5065d](https://github.com/Lundalogik/lime-elements/commit/2feb72657e2f34113513160d4a5e14c787c5065d)), closes [Lundalogik/crm-feature#3546](https://github.com/Lundalogik/crm-feature/issues/3546)
+
+* fix(input-field): create unique IDs for each helper text on the page ([4330c31b42f326470fda52ecaf3e3bfca7ca1dec](https://github.com/Lundalogik/lime-elements/commit/4330c31b42f326470fda52ecaf3e3bfca7ca1dec))
+The `aria-controls` and `aria-describedby` are using these IDs
+to give clues to assistive technologies.
+In the former implementation, we were giving all existing helper text
+elements on the page the exact same IDs.
+
+* fix(input-field): create unique IDs for each input field's `label` on the page ([8082490b9e953d71f8be1c4fe0b2792d7f1826e1](https://github.com/Lundalogik/lime-elements/commit/8082490b9e953d71f8be1c4fe0b2792d7f1826e1))
+The `aria-labelledby` is using these IDs
+to give clues to assistive technologies.
+In the former implementation, we were giving all existing `label`s
+on the page the exact same IDs.
+
+* fix(makeEnterClickable): avoid calling forceUpdate() on non-component elements ([96018674c61138803902f794343821a05ec2da74](https://github.com/Lundalogik/lime-elements/commit/96018674c61138803902f794343821a05ec2da74))
+
+* fix(schema-field): throw warning instead of error if a custom component is undefined ([52c603ea2e14ccb9bf62c61a7a9cfedd4e680090](https://github.com/Lundalogik/lime-elements/commit/52c603ea2e14ccb9bf62c61a7a9cfedd4e680090))
+
+* fix(slider): fix bug where slider might break if the component is resized ([3ef298aa07ae3f0444bd2530ad4c106827ed7cca](https://github.com/Lundalogik/lime-elements/commit/3ef298aa07ae3f0444bd2530ad4c106827ed7cca)), closes [Lundalogik/crm-feature#3550](https://github.com/Lundalogik/crm-feature/issues/3550) [Lundalogik/crm-feature#3287](https://github.com/Lundalogik/crm-feature/issues/3287) [#1850](https://github.com/Lundalogik/lime-elements/issues/1850)
+
 ## [37.1.0-next.12](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.11...v37.1.0-next.12) (2023-08-04)
 
 
