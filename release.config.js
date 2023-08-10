@@ -28,7 +28,7 @@ module.exports = {
                         const isReleaseType = !!(['feat', 'fix', 'perf', 'revert', 'docs'].find((type) => type === commit.type));
                         const hasNote = commit.notes.length > 0;
                         if (typeof commit.body === 'string') {
-                            commit.body = commit.body.replace(/\n\n/, '\n');
+                            commit.body = commit.body.replace(/\n\n/, '  \n');
                         }
                         if (isReleaseType || hasNote) {
                             return commit;
