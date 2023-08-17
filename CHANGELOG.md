@@ -1,3 +1,13 @@
+# [37.1.0-dev.3](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-dev.2...v37.1.0-dev.3) (2023-08-17)
+
+
+### Features
+
+* feat(collapsible-section): make enter clickable ([62582358dbdd10257e5b4a19aa09078129b1a730](https://github.com/Lundalogik/lime-elements/commit/62582358dbdd10257e5b4a19aa09078129b1a730))Overrides the default browser behavior on enter,
+so that it does not repeatedly click when you hold it down
+
+Co-authored-by: Kiarokh Moattar <kiarokh@icloud.com>
+
 # [37.1.0-dev.2](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-dev.1...v37.1.0-dev.2) (2023-08-10)
 
 
