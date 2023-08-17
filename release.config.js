@@ -1,9 +1,7 @@
 /* eslint-env node */
 const { readFileSync } = require('fs');
 const { join } = require('path');
-import { getWriterOpts } from 'conventional-changelog-conventionalcommits';
-
-const writerOpts = getWriterOpts();
+const { writerOpts } = require('conventional-changelog-conventionalcommits/writer-opts');
 
 module.exports = {
     branches: [
