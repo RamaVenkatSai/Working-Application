@@ -2,7 +2,9 @@
 const { readFileSync } = require('fs');
 const { join } = require('path');
 const opts = require('conventional-changelog-conventionalcommits');
-
+console.log('opts:', JSON.stringify(opts, null, 2));
+const writerOpts = require('conventional-changelog-conventionalcommits/writer-opts');
+console.log('writerOpts:', JSON.stringify(writerOpts, null, 2));
 // const defaultTransform = (commit, context) => {
 //     let discard = true;
 //     const issues = [];
@@ -121,12 +123,12 @@ module.exports = {
                         'utf-8'
                     ),
                     transform: (commit, context) => {
-                        console.log(
-                            'commit to transform:',
-                            JSON.stringify(commit, null, 2),
-                            'context:',
-                            JSON.stringify(context, null, 2)
-                        );
+                        // console.log(
+                        //     'commit to transform:',
+                        //     JSON.stringify(commit, null, 2),
+                        //     'context:',
+                        //     JSON.stringify(context, null, 2)
+                        // );
                         // const preTransformedCommit = defaultTransform(
                         //     commit,
                         //     context
