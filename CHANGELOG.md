@@ -1,3 +1,53 @@
+## [38.0.0-dev.1](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-dev.4...v38.0.0-dev.1) (2023-08-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **changelog:** This is the note for the breaking change, where the breaking change
+note comes before the changelog note. How does that work out?
+
+### Features
+
+
+* **collapsible-section:** make enter clickable ([26b5a72](https://github.com/Lundalogik/lime-elements/commit/26b5a72bf20ea003f2c839915970e06e7cbc8abb))
+
+### Bug Fixes
+
+
+* **changelog:** now let's push it and add a breaking note as well, after the changelog note ([28bcd3b](https://github.com/Lundalogik/lime-elements/commit/28bcd3b1ae652091920b133f22720d5f3b82c1b1)), closes [#123](https://github.com/Lundalogik/lime-elements/issues/123)
+Let us also try some line breaks.
+There, did you see it? That was the first.
+There was another. I think I will keep it
+to single line breaks for now though.
+
+BREAKING CHANGE:
+Let us also try a breaking change, just for laughs. I am sure it will fail horribly.
+* **changelog:** now let's push it and add a breaking note as well, before the changelog note ([236a16c](https://github.com/Lundalogik/lime-elements/commit/236a16c09b8dcffb960bce5b56457264a026ec5c)), closes [#123](https://github.com/Lundalogik/lime-elements/issues/123)
+Let us also try some line breaks.
+There, did you see it? That was the first.
+There was another. I think I will keep it
+to single line breaks for now though.
+* **changelog:** wohoo! this really looks quite good now 👍 ([3039b7b](https://github.com/Lundalogik/lime-elements/commit/3039b7b62353557de5b4670db4abcbd506d92c3f)), closes [#123](https://github.com/Lundalogik/lime-elements/issues/123)
+Let us also try some line breaks.
+There, did you see it? That was the first.
+There was another. I think I will keep it
+to single line breaks for now though.
+* commit with no note tag ([0919dd1](https://github.com/Lundalogik/lime-elements/commit/0919dd199ee37ceedcffad507e38152c41ad0cc5)), closes [#345](https://github.com/Lundalogik/lime-elements/issues/345)
+* commit with note start tag and note end tag ([f5c982b](https://github.com/Lundalogik/lime-elements/commit/f5c982b5cbe92aa456e41b2a4ba6932de0db2a8a))
+Here is some less technical stuff I want to include in the
+changelog. Let us put some more text here, just to make sure
+we have something to work with.
+* commit with note tag at the very end of the message ([f6e2590](https://github.com/Lundalogik/lime-elements/commit/f6e2590e5588f8127dc6615b3d38e91953bc99ab)), closes [#345](https://github.com/Lundalogik/lime-elements/issues/345)
+Here is some less technical stuff I want to include in the
+changelog. Let us put some more text here, just to make sure
+we have something to work with.
+* try things out ([f1f168b](https://github.com/Lundalogik/lime-elements/commit/f1f168bcef39d4b254965fbe82761ca35265b584))
+Here is some less technical stuff I want to include in the
+changelog. Let us put some more text here, just to make sure
+we have something to work with.
+
+fix: #345
+
 # [37.1.0-dev.4](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-dev.3...v37.1.0-dev.4) (2023-08-18)
 
 
