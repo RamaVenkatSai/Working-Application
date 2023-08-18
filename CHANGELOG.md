@@ -1,3 +1,15 @@
+# [37.1.0-dev.4](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-dev.3...v37.1.0-dev.4) (2023-08-18)
+
+
+* uncomment workflow line that installs node modules ([61883b50b636d41acc61f919354a7700991c3a43](https://github.com/Lundalogik/lime-elements/commit/61883b50b636d41acc61f919354a7700991c3a43))* try importing writerOpts another way ([c1b2553f2845e484206ee0ed18e964bb47f21e8a](https://github.com/Lundalogik/lime-elements/commit/c1b2553f2845e484206ee0ed18e964bb47f21e8a))* third try getting the default transformer ([36e88f2ee045f5de23e8f14bc39842bad43d9825](https://github.com/Lundalogik/lime-elements/commit/36e88f2ee045f5de23e8f14bc39842bad43d9825))* second try getting the default transformer ([dbe2aa4f57e2e958d4de0a6957bd50b4fdf158cf](https://github.com/Lundalogik/lime-elements/commit/dbe2aa4f57e2e958d4de0a6957bd50b4fdf158cf))* try running the default transformer first ([863615cc32dd9c266bd8a2aa878450b73b20509b](https://github.com/Lundalogik/lime-elements/commit/863615cc32dd9c266bd8a2aa878450b73b20509b))
+
+### feat
+
+* feat(collapsible-section): make enter clickable ([ae0ad78e7a836f5047ad67c5881c6a1e4dc01e6b](https://github.com/Lundalogik/lime-elements/commit/ae0ad78e7a836f5047ad67c5881c6a1e4dc01e6b))Overrides the default browser behavior on enter,
+so that it does not repeatedly click when you hold it down
+
+Co-authored-by: Kiarokh Moattar <kiarokh@icloud.com>
+
 # [37.1.0-dev.3](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-dev.2...v37.1.0-dev.3) (2023-08-17)
 
 
