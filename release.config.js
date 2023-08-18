@@ -2,7 +2,9 @@
 const { readFileSync } = require('fs');
 const { join } = require('path');
 const getOpts = require('conventional-changelog-conventionalcommits');
-
+getOpts().then((opts) => {
+    console.log('opts:', opts);
+});
 module.exports = {
     branches: [
         'main',
@@ -27,21 +29,21 @@ module.exports = {
                         join(__dirname, 'commit.hbs'),
                         'utf-8'
                     ),
-                    transform: async (commit, context) => {
-                        const opts = await getOpts();
-                        const defaultTransform = opts.writerOpts.transform;
-                        const rawCommit = JSON.parse(JSON.stringify(commit));
-                        const preTransformedCommit = defaultTransform(
-                            commit,
-                            context
-                        );
-                        if (preTransformedCommit) {
-                            console.log('raw commit:', rawCommit);
-                            console.log('preTransformedCommit:', preTransformedCommit);
-                        }
+                    // transform: async (commit, context) => {
+                    //     const opts = await getOpts();
+                    //     const defaultTransform = opts.writerOpts.transform;
+                    //     const rawCommit = JSON.parse(JSON.stringify(commit));
+                    //     const preTransformedCommit = defaultTransform(
+                    //         commit,
+                    //         context
+                    //     );
+                    //     if (preTransformedCommit) {
+                    //         console.log('raw commit:', rawCommit);
+                    //         console.log('preTransformedCommit:', preTransformedCommit);
+                    //     }
 
-                        return preTransformedCommit;
-                    },
+                    //     return preTransformedCommit;
+                    // },
                 },
             },
         ],
