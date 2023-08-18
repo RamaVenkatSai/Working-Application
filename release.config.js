@@ -1,6 +1,7 @@
 /* eslint-env node */
 const { readFileSync } = require('fs');
 const { join } = require('path');
+const opts = require('conventional-changelog-conventionalcommits');
 
 // const defaultTransform = (commit, context) => {
 //     let discard = true;
@@ -126,14 +127,13 @@ module.exports = {
                             'context:',
                             JSON.stringify(context, null, 2)
                         );
-                        const { writerOpts } = require('conventional-changelog-conventionalcommits');
                         // const preTransformedCommit = defaultTransform(
                         //     commit,
                         //     context
                         // );
                         console.log(
-                            'writerOpts:',
-                            JSON.stringify(writerOpts, null, 2)
+                            'opts:',
+                            JSON.stringify(opts, null, 2)
                         );
 
                         return commit;
