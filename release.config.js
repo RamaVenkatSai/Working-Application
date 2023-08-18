@@ -2,9 +2,9 @@
 const { readFileSync } = require('fs');
 const { join } = require('path');
 const opts = require('conventional-changelog-conventionalcommits');
-console.log('opts:', JSON.stringify(opts, null, 2));
+console.log('opts:', opts);
 const writerOpts = require('conventional-changelog-conventionalcommits/writer-opts');
-console.log('writerOpts:', JSON.stringify(writerOpts, null, 2));
+console.log('writerOpts:', writerOpts);
 // const defaultTransform = (commit, context) => {
 //     let discard = true;
 //     const issues = [];
@@ -133,10 +133,6 @@ module.exports = {
                         //     commit,
                         //     context
                         // );
-                        console.log(
-                            'opts:',
-                            JSON.stringify(opts, null, 2)
-                        );
 
                         return commit;
                     },
