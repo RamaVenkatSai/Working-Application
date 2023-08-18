@@ -30,18 +30,14 @@ module.exports = {
                     transform: async (commit, context) => {
                         const opts = await getOpts();
                         const defaultTransform = opts.writerOpts.transform;
-                        console.log('opts:', opts);
-                        console.log(
-                            'commit to transform:',
-                            JSON.stringify(commit, null, 2),
-                            'context:',
-                            JSON.stringify(context, null, 2)
-                        );
                         const preTransformedCommit = defaultTransform(
                             commit,
                             context
                         );
-                        console.log('preTransformedCommit:', preTransformedCommit);
+                        if (preTransformedCommit) {
+                            console.log('raw commit:', commit);
+                            console.log('preTransformedCommit:', preTransformedCommit);
+                        }
 
                         return preTransformedCommit;
                     },
