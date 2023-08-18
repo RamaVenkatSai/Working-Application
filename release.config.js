@@ -1,105 +1,7 @@
 /* eslint-env node */
 const { readFileSync } = require('fs');
 const { join } = require('path');
-const opts = require('conventional-changelog-conventionalcommits');
-console.log('opts:', opts);
-const getWriterOpts = require('conventional-changelog-conventionalcommits/writer-opts');
-console.log('getWriterOpts:', getWriterOpts);
-const writerOpts = getWriterOpts();
-console.log('writerOpts:', writerOpts);
-
-// const defaultTransform = (commit, context) => {
-//     let discard = true;
-//     const issues = [];
-//     const entry = findTypeEntry(config.types, commit);
-
-//     // adds additional breaking change notes
-//     // for the special case, test(system)!: hello world, where there is
-//     // a '!' but no 'BREAKING CHANGE' in body:
-//     addBangNotes(commit);
-
-//     // Add an entry in the CHANGELOG if special Release-As footer
-//     // is used:
-//     if (
-//         (commit.footer && releaseAsRe.test(commit.footer)) ||
-//         (commit.body && releaseAsRe.test(commit.body))
-//     ) {
-//         discard = false;
-//     }
-
-//     commit.notes.forEach((note) => {
-//         note.title = 'BREAKING CHANGES';
-//         discard = false;
-//     });
-
-//     // breaking changes attached to any type are still displayed.
-//     if (discard && (entry === undefined || entry.hidden)) {
-//         return;
-//     }
-
-//     if (entry) {
-//         commit.type = entry.section;
-//     }
-
-//     if (commit.scope === '*') {
-//         commit.scope = '';
-//     }
-
-//     if (typeof commit.hash === 'string') {
-//         commit.shortHash = commit.hash.substring(0, 7);
-//     }
-
-//     if (typeof commit.subject === 'string') {
-//         // Issue URLs.
-//         config.issuePrefixes.join('|');
-//         const issueRegEx =
-//             '(' + config.issuePrefixes.join('|') + ')' + '([0-9]+)';
-//         const re = new RegExp(issueRegEx, 'g');
-
-//         commit.subject = commit.subject.replace(re, (_, prefix, issue) => {
-//             issues.push(prefix + issue);
-//             const url = expandTemplate(config.issueUrlFormat, {
-//                 host: context.host,
-//                 owner: context.owner,
-//                 repository: context.repository,
-//                 id: issue,
-//                 prefix: prefix,
-//             });
-
-//             return `[${prefix}${issue}](${url})`;
-//         });
-//         // User URLs.
-//         commit.subject = commit.subject.replace(
-//             /\B@([a-z0-9](?:-?[a-z0-9/]){0,38})/g,
-//             (_, user) => {
-//                 // TODO: investigate why this code exists.
-//                 if (user.includes('/')) {
-//                     return `@${user}`;
-//                 }
-
-//                 const usernameUrl = expandTemplate(config.userUrlFormat, {
-//                     host: context.host,
-//                     owner: context.owner,
-//                     repository: context.repository,
-//                     user: user,
-//                 });
-
-//                 return `[@${user}](${usernameUrl})`;
-//             }
-//         );
-//     }
-
-//     // remove references that already appear in the subject
-//     commit.references = commit.references.filter((reference) => {
-//         if (issues.indexOf(reference.prefix + reference.issue) === -1) {
-//             return true;
-//         }
-
-//         return false;
-//     });
-
-//     return commit;
-// };
+const getOpts = require('conventional-changelog-conventionalcommits');
 
 module.exports = {
     branches: [
@@ -125,19 +27,23 @@ module.exports = {
                         join(__dirname, 'commit.hbs'),
                         'utf-8'
                     ),
-                    transform: (commit, context) => {
-                        // console.log(
-                        //     'commit to transform:',
-                        //     JSON.stringify(commit, null, 2),
-                        //     'context:',
-                        //     JSON.stringify(context, null, 2)
-                        // );
-                        // const preTransformedCommit = defaultTransform(
-                        //     commit,
-                        //     context
-                        // );
+                    transform: async (commit, context) => {
+                        const opts = await getOpts();
+                        const defaultTransform = opts.writerOpts.transform;
+                        console.log('opts:', opts);
+                        console.log(
+                            'commit to transform:',
+                            JSON.stringify(commit, null, 2),
+                            'context:',
+                            JSON.stringify(context, null, 2)
+                        );
+                        const preTransformedCommit = defaultTransform(
+                            commit,
+                            context
+                        );
+                        console.log('preTransformedCommit:', preTransformedCommit);
 
-                        return commit;
+                        return preTransformedCommit;
                     },
                 },
             },
