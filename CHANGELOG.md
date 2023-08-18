@@ -1,3 +1,17 @@
+## [38.0.0-dev.4](https://github.com/Lundalogik/lime-elements/compare/v38.0.0-dev.3...v38.0.0-dev.4) (2023-08-18)
+
+
+### Features
+
+
+* update some imaginary dependency ([536834d](https://github.com/Lundalogik/lime-elements/commit/536834d301edf33a1f6f1d3e21b86abc71d2b49c))
+  - Features:
+    - **some scope:** added a feature
+    - **some other scope:** added another feature
+  - Bug Fixes:
+    - **button:** accept clicks again
+    - **button:** don't explode the computer when clicked
+
 ## [38.0.0-dev.3](https://github.com/Lundalogik/lime-elements/compare/v38.0.0-dev.2...v38.0.0-dev.3) (2023-08-18)
 
 
