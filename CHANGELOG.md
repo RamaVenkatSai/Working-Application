@@ -1,3 +1,15 @@
+## [38.0.0-dev.2](https://github.com/Lundalogik/lime-elements/compare/v38.0.0-dev.1...v38.0.0-dev.2) (2023-08-18)
+
+
+### Bug Fixes
+
+
+* a commit with some blank lines in the changelog message ([dde5954](https://github.com/Lundalogik/lime-elements/commit/dde5954c3d48f1701ebbec1fdf904b8d5968ea77))
+First line of changelog message body.
+
+Second line of changelog message body, after a blank line.
+* another commit ([f6b1937](https://github.com/Lundalogik/lime-elements/commit/f6b19371cf0b2b20c16cb04d81d637032992a5c6))
+
 ## [38.0.0-dev.1](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-dev.4...v38.0.0-dev.1) (2023-08-18)
 
 
