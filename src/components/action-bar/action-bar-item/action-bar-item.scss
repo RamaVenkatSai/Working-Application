@@ -9,6 +9,7 @@ limel-action-bar-item {
 
     &:not([is-visible]) {
         opacity: 0;
+        pointer-events: none;
     }
 }
 
@@ -36,6 +37,7 @@ button {
     min-width: var(--action-bar-item-height);
     max-width: var(--action-bar-item-max-width, 10rem);
     height: var(--action-bar-item-height);
+    color: var(--limel-action-bar-item-text-color);
 
     border-radius: var(--action-bar-item-height);
     font-size: functions.pxToRem(14);
@@ -63,14 +65,6 @@ limel-icon {
         --action-bar-item-icon-color,
         var(--limel-action-bar-item-text-color)
     );
-}
-
-limel-tooltip {
-    // CSS hack due to the tooltip's placement bug
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
 }
 
 div[role='separator'] {

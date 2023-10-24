@@ -1,7 +1,17 @@
-import { Component, Event, EventEmitter, h, Prop } from '@stencil/core';
-import { ActionBarItem } from '../action-bar.types';
+import {
+    Component,
+    Element,
+    Event,
+    EventEmitter,
+    h,
+    Prop,
+} from '@stencil/core';
+import { ActionBarItem, ListSeparator } from '../../../interface';
 import { createRandomString } from '../../../util/random-string';
-import { ListSeparator } from 'src/interface';
+import {
+    makeEnterClickable,
+    removeEnterClickable,
+} from 'src/util/make-enter-clickable';
 
 /**
  * @private
@@ -31,6 +41,9 @@ export class ActionBarButton {
     @Prop({ reflect: true })
     public isVisible: boolean = true;
 
+    @Element()
+    private host: HTMLLimelActionBarItemElement;
+
     /**
      * Used to attach the right tooltip to the right button
      */
@@ -38,6 +51,14 @@ export class ActionBarButton {
 
     constructor() {
         this.tooltipId = createRandomString();
+    }
+
+    public componentWillLoad() {
+        makeEnterClickable(this.host);
+    }
+
+    public disconnectedCallback() {
+        removeEnterClickable(this.host);
     }
 
     public render() {

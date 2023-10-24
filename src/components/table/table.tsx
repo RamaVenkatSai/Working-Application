@@ -14,7 +14,7 @@ import {
     TableParams,
     ColumnSorter,
     ColumnAggregate,
-} from './table.types';
+} from '../../interface';
 import { ColumnDefinitionFactory, createColumnSorter } from './columns';
 import { isEqual, has } from 'lodash-es';
 import { ElementPool } from './element-pool';
@@ -682,6 +682,15 @@ export class Table {
             row.getElement().classList.add('active');
         } else {
             row.getElement().classList.remove('active');
+        }
+
+        const interactiveFeedbackElement = row
+            .getElement()
+            .getElementsByClassName('interactive-feedback');
+        if (interactiveFeedbackElement.length === 0) {
+            const element = row.getElement().ownerDocument.createElement('div');
+            element.classList.add('interactive-feedback');
+            row.getElement().prepend(element);
         }
     }
 

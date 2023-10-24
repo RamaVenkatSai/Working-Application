@@ -1,5 +1,7 @@
 import { Component, h, Prop, Element, State } from '@stencil/core';
+import { JSX } from 'react';
 import { createRandomString } from '../../util/random-string';
+import { OpenDirection } from '../../interface';
 
 const DEFAULT_MAX_LENGTH = 50;
 
@@ -19,8 +21,9 @@ const DEFAULT_MAX_LENGTH = 50;
  *
  * :::note
  * In order to display the tooltip, the tooltip element and its trigger element
- * must be within the same document or document fragment.
- * A good practice is to just place them next to each other like below:
+ * must be within the same document or document fragment (the same shadowRoot).
+ * Often, it's easiest to just place them next to each other like in the example
+ * below, but if you need to, you can place them differently.
  *
  * ```html
  * <limel-button icon="search" id="tooltip-example" />
@@ -41,10 +44,9 @@ const DEFAULT_MAX_LENGTH = 50;
  * use that, not a tooltip.
  * - Make sure to use the tooltip on an element that users naturally and
  * effortlessly recognize can be hovered.
- * @exampleComponent limel-example-tooltip
+ * @exampleComponent limel-example-tooltip-basic
  * @exampleComponent limel-example-tooltip-max-character
  * @exampleComponent limel-example-tooltip-composite
- * @private
  */
 @Component({
     tag: 'limel-tooltip',
@@ -81,15 +83,22 @@ export class Tooltip {
     @Prop({ reflect: true })
     public maxlength?: number = DEFAULT_MAX_LENGTH;
 
-    @State()
-    private open: boolean;
+    /**
+     * Decides the tooltip's location in relation to its trigger.
+     */
+    @Prop({ reflect: true })
+    public openDirection: OpenDirection = 'top';
 
     @Element()
     private host: HTMLLimelTooltipElement;
 
+    @State()
+    private open: boolean;
+
     private portalId: string;
     private tooltipId: string;
     private showTooltipTimeoutHandle: number;
+    private ownerElement: HTMLElement;
 
     public constructor() {
         this.portalId = createRandomString();
@@ -97,6 +106,7 @@ export class Tooltip {
     }
 
     public connectedCallback() {
+        this.ownerElement = this.getOwnerElement();
         this.setOwnerAriaLabel();
         this.addListeners();
     }
@@ -105,7 +115,7 @@ export class Tooltip {
         this.removeListeners();
     }
 
-    public render() {
+    public render(): JSX.Element {
         const tooltipZIndex = getComputedStyle(this.host).getPropertyValue(
             '--tooltip-z-index'
         );
@@ -113,13 +123,14 @@ export class Tooltip {
         return (
             <div class="trigger-anchor">
                 <limel-portal
-                    openDirection="bottom-start"
+                    openDirection={this.openDirection}
                     visible={this.open}
                     containerId={this.portalId}
                     containerStyle={{
                         'z-index': tooltipZIndex,
                         'pointer-events': 'none',
                     }}
+                    anchor={this.ownerElement}
                 >
                     <limel-tooltip-content
                         label={this.label}
@@ -135,22 +146,19 @@ export class Tooltip {
     }
 
     private setOwnerAriaLabel() {
-        const owner = this.getOwnerElement();
-        owner?.setAttribute('aria-describedby', this.tooltipId);
+        this.ownerElement?.setAttribute('aria-describedby', this.tooltipId);
     }
 
     private addListeners() {
-        const owner = this.getOwnerElement();
-        owner?.addEventListener('mouseover', this.showTooltip);
-        owner?.addEventListener('mouseout', this.hideTooltip);
-        owner?.addEventListener('click', this.hideTooltip);
+        this.ownerElement?.addEventListener('mouseover', this.showTooltip);
+        this.ownerElement?.addEventListener('mouseout', this.hideTooltip);
+        this.ownerElement?.addEventListener('click', this.hideTooltip);
     }
 
     private removeListeners() {
-        const owner = this.getOwnerElement();
-        owner?.removeEventListener('mouseover', this.showTooltip);
-        owner?.removeEventListener('mouseout', this.hideTooltip);
-        owner?.removeEventListener('click', this.hideTooltip);
+        this.ownerElement?.removeEventListener('mouseover', this.showTooltip);
+        this.ownerElement?.removeEventListener('mouseout', this.hideTooltip);
+        this.ownerElement?.removeEventListener('click', this.hideTooltip);
     }
 
     private showTooltip = () => {

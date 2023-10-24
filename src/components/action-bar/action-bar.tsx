@@ -8,9 +8,12 @@ import {
     State,
     Element,
 } from '@stencil/core';
-import { ActionBarItem } from './action-bar.types';
-import { MenuItem, OpenDirection } from '../menu/menu.types';
-import { ListSeparator } from '../list/list-item.types';
+import {
+    ActionBarItem,
+    MenuItem,
+    OpenDirection,
+    ListSeparator,
+} from '../../interface';
 import { isItem } from './isItem';
 
 /**
@@ -36,7 +39,6 @@ import { isItem } from './isItem';
  * @exampleComponent limel-example-action-bar-floating
  * @exampleComponent limel-example-action-bar-styling
  * @exampleComponent limel-example-action-bar-as-primary-component
- * @private
  */
 @Component({
     tag: 'limel-action-bar',

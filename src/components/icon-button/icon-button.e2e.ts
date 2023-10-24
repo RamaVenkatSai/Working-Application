@@ -9,14 +9,11 @@ describe('limel-icon-button', () => {
                 <limel-icon-button icon="unit-test" label="Add favorite"></limel-icon-button>
             `);
             mdcIconButton = await page.find(
-                'limel-icon-button >>> .mdc-icon-button'
+                'limel-icon-button >>> limel-tooltip'
             );
         });
         it('displays the correct label', () => {
-            expect(mdcIconButton).toEqualAttribute(
-                'aria-label',
-                'Add favorite'
-            );
+            expect(mdcIconButton).toEqualAttribute('label', 'Add favorite');
         });
     });
 });

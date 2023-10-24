@@ -1,5 +1,5 @@
 import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
-import { FormComponent } from '../form/form.types';
+import { FormComponent } from '../../interface';
 import { brightnesses, colors, getColorName, getCssColor } from './swatches';
 
 /**
@@ -74,11 +74,10 @@ export class Palette implements FormComponent {
         };
 
         return (
-            <div
+            <button
                 class={classList}
                 onClick={this.handleClick(color, brightness)}
-                tabindex="0"
-            ></div>
+            />
         );
     };
 

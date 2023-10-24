@@ -1,36 +1,38 @@
 import { Component, h, State } from '@stencil/core';
 
 /**
- * Basic example
+ * With `helperText`
+ *
+ * Switch can have a helper text, which is useful when providing additional information and
+ * can clarify functionality of the switch for the user.
+ *
+ * The helper text is displayed when the user puts focus on the switch, and works with keyboard
+ * navigation as well. However, on touchscreen devices, the helper text is always displayed.
  */
+
 @Component({
-    tag: 'limel-example-slider',
     shadow: true,
+    tag: 'limel-example-switch-helper-text',
 })
-export class SliderExample {
+export class SwitchExampleHelperText {
+    @State()
+    private value = true;
+
     @State()
     private disabled = false;
 
     @State()
     private readonly = false;
 
-    @State()
-    private value = 25;
-
-    private minValue = 15;
-    private maxValue = 75;
-
     public render() {
         return [
-            <limel-slider
-                label="Basic slider"
-                unit=" %"
+            <limel-switch
+                label={`Ask Siri: ${this.value.toString()}`}
                 value={this.value}
-                valuemax={this.maxValue}
-                valuemin={this.minValue}
                 disabled={this.disabled}
                 readonly={this.readonly}
-                onChange={this.handleChange}
+                onChange={this.changeHandler}
+                helperText={'Siri helps you get things done, just by asking.'}
             />,
             <limel-example-controls>
                 <limel-checkbox
@@ -43,18 +45,28 @@ export class SliderExample {
                     label="Readonly"
                     onChange={this.setReadonly}
                 />
+                <limel-checkbox
+                    checked={this.value}
+                    label="Selected"
+                    onChange={this.setChecked}
+                />
             </limel-example-controls>,
             <limel-example-value value={this.value} />,
         ];
     }
 
-    private handleChange = (event: CustomEvent<number>) => {
+    private changeHandler = (event: CustomEvent<boolean>) => {
         this.value = event.detail;
     };
 
     private setDisabled = (event: CustomEvent<boolean>) => {
         event.stopPropagation();
         this.disabled = event.detail;
+    };
+
+    private setChecked = (event: CustomEvent<boolean>) => {
+        event.stopPropagation();
+        this.value = event.detail;
     };
 
     private setReadonly = (event: CustomEvent<boolean>) => {

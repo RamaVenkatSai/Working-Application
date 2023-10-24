@@ -8,8 +8,16 @@
 $scale-factor: 0.8;
 
 :host(limel-switch) {
-    display: inline-flex;
+    isolation: isolate;
+
+    display: flex;
     align-items: center;
+    flex-wrap: wrap;
+
+    limel-helper-line {
+        display: flex;
+        flex-basis: 100%;
+    }
 
     --mdc-switch-selected-icon-color: transparent;
     --mdc-switch-unselected-icon-color: transparent;
@@ -59,6 +67,9 @@ $scale-factor: 0.8;
 
     --mdc-switch-handle-elevation: var(--button-shadow-normal);
     --mdc-switch-disabled-track-opacity: 0.4;
+
+    --mdc-switch-disabled-selected-handle-color: rgb(var(--contrast-1000));
+    --mdc-switch-disabled-unselected-handle-color: rgb(var(--contrast-1000));
 }
 
 .mdc-switch {
@@ -95,3 +106,4 @@ label {
 }
 
 @import './partial-styles/_readonly.scss';
+@import './partial-styles/_helper-text.scss';

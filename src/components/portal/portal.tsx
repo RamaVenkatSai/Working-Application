@@ -1,5 +1,5 @@
 import { Component, Element, h, Prop, Watch } from '@stencil/core';
-import { OpenDirection } from '../menu/menu.types';
+import { OpenDirection } from '../../interface';
 import {
     createPopper,
     Instance,
@@ -31,7 +31,7 @@ import { FlipModifier } from '@popperjs/core/lib/modifiers/flip';
  * `connectedCallback`.
  * @slot - Content to put inside the portal
  * @private
- * @exampleComponent limel-example-portal
+ * @exampleComponent limel-example-portal-basic
  */
 /* eslint-enable jsdoc/check-indentation */
 @Component({
@@ -43,19 +43,19 @@ export class Portal {
     /**
      * Decides which direction the portal content should open.
      */
-    @Prop()
+    @Prop({ reflect: true })
     public openDirection: OpenDirection = 'bottom';
 
     /**
      * Position of the content.
      */
-    @Prop()
+    @Prop({ reflect: true })
     public position: 'fixed' | 'absolute' = 'absolute';
 
     /**
      * A unique ID.
      */
-    @Prop()
+    @Prop({ reflect: true })
     public containerId: string;
 
     /**
@@ -74,7 +74,7 @@ export class Portal {
      * Used to make a dropdown have the same width as the trigger, for example
      * in `limel-picker`.
      */
-    @Prop()
+    @Prop({ reflect: true })
     public inheritParentWidth = false;
 
     /**
@@ -83,37 +83,23 @@ export class Portal {
      * If the content is from within a dialog for instance, this can be set to
      * true from false when the dialog opens to position the content properly.
      */
-    @Prop()
+    @Prop({ reflect: true })
     public visible = false;
 
-    private parents: WeakMap<HTMLElement, HTMLElement>;
-
-    @Watch('visible')
-    protected onVisible() {
-        if (!this.visible) {
-            this.hideContainer();
-            this.styleContainer();
-            this.destroyPopper();
-
-            return;
-        }
-
-        this.styleContainer();
-        this.createPopper();
-        requestAnimationFrame(() => {
-            this.showContainer();
-        });
-    }
+    /**
+     * The element that the content should be positioned relative to.
+     * Defaults to the limel-portal element.
+     */
+    @Prop()
+    public anchor?: HTMLElement = null;
 
     @Element()
     private host: HTMLLimelPortalElement;
 
+    private parents: WeakMap<HTMLElement, HTMLElement>;
     private container: HTMLElement;
-
     private popperInstance: Instance;
-
     private loaded = false;
-
     private observer: ResizeObserver;
 
     constructor() {
@@ -161,6 +147,23 @@ export class Portal {
 
     public render() {
         return <slot />;
+    }
+
+    @Watch('visible')
+    protected onVisible() {
+        if (!this.visible) {
+            this.hideContainer();
+            this.styleContainer();
+            this.destroyPopper();
+
+            return;
+        }
+
+        this.styleContainer();
+        this.createPopper();
+        requestAnimationFrame(() => {
+            this.showContainer();
+        });
     }
 
     private createContainer() {
@@ -256,7 +259,11 @@ export class Portal {
     private createPopper() {
         const config = this.createPopperConfig();
 
-        this.popperInstance = createPopper(this.host, this.container, config);
+        this.popperInstance = createPopper(
+            this.anchor || this.host,
+            this.container,
+            config
+        );
     }
 
     private destroyPopper() {

@@ -1,4 +1,4 @@
-import { MDCSlider } from '@material/slider';
+import { MDCSlider, MDCSliderChangeEventDetail } from '@material/slider';
 import {
     Component,
     Element,
@@ -11,8 +11,14 @@ import {
     Watch,
 } from '@stencil/core';
 import { getPercentageClass } from './getPercentageClass';
+import { createRandomString } from '../../util/random-string';
+
+const DEFAULT_FACTOR = 1;
+const DEFAULT_MAX_VALUE = 100;
+const DEFAULT_MIN_VALUE = 0;
+
 /**
- * @exampleComponent limel-example-slider
+ * @exampleComponent limel-example-slider-basic
  * @exampleComponent limel-example-slider-multiplier
  * @exampleComponent limel-example-slider-multiplier-percentage-colors
  * @exampleComponent limel-example-slider-composite
@@ -47,7 +53,7 @@ export class Slider {
      * so the original format stays the same.
      */
     @Prop({ reflect: true })
-    public factor: number = 1;
+    public factor: number = DEFAULT_FACTOR;
 
     /**
      * Label to display next to the input
@@ -77,13 +83,13 @@ export class Slider {
      * The maximum value allowed
      */
     @Prop({ reflect: true })
-    public valuemax: number = 100; // eslint-disable-line no-magic-numbers
+    public valuemax: number = DEFAULT_MAX_VALUE;
 
     /**
      * The minimum value allowed
      */
     @Prop({ reflect: true })
-    public valuemin: number = 0;
+    public valuemin: number = DEFAULT_MIN_VALUE;
 
     /**
      * The stepping interval to use when adjusting the value
@@ -100,25 +106,154 @@ export class Slider {
     @Element()
     private rootElement: HTMLLimelSliderElement;
 
-    private mdcSlider: MDCSlider;
-
     @State()
     private percentageClass: string;
 
+    private mdcSlider: MDCSlider;
+    private labelId: string;
+    private helperTextId: string;
+    private observer: ResizeObserver;
+
     public constructor() {
-        this.inputHandler = this.inputHandler.bind(this);
-        this.getContainerClassList = this.getContainerClassList.bind(this);
+        this.labelId = createRandomString();
+        this.helperTextId = createRandomString();
     }
 
     public connectedCallback() {
         this.initialize();
+        this.observer = new ResizeObserver(this.resizeObserverCallback);
+        this.observer.observe(this.rootElement);
+    }
+
+    public componentWillLoad() {
+        this.setPercentageClass(this.value);
     }
 
     public componentDidLoad() {
         this.initialize();
     }
 
-    private initialize() {
+    public disconnectedCallback() {
+        this.destroyMDCSlider();
+        this.observer.disconnect();
+    }
+
+    public render() {
+        const inputProps: any = {};
+        if (this.step) {
+            inputProps.step = this.multiplyByFactor(this.step);
+        }
+
+        if (this.disabled || this.readonly) {
+            inputProps.disabled = true;
+        }
+
+        return (
+            <Host class={this.getContainerClassList()}>
+                <label
+                    class="slider__label mdc-floating-label mdc-floating-label--float-above"
+                    id={this.labelId}
+                >
+                    {this.label}
+                </label>
+                <div class="slider__content-range-container">
+                    <span class="slider__content-min-label">
+                        {this.multiplyByFactor(this.valuemin)}
+                        {this.unit}
+                    </span>
+                    <span class="slider__content-max-label">
+                        {this.multiplyByFactor(this.valuemax)}
+                        {this.unit}
+                    </span>
+                </div>
+                <div
+                    class={{
+                        'mdc-slider': true,
+                        'mdc-slider--discrete': true,
+                        'mdc-slider--disabled': this.disabled || this.readonly,
+                    }}
+                >
+                    <input
+                        class="mdc-slider__input"
+                        type="range"
+                        min={this.multiplyByFactor(this.valuemin)}
+                        max={this.multiplyByFactor(this.valuemax)}
+                        value={this.multiplyByFactor(this.value)}
+                        name="volume"
+                        aria-labelledby={this.labelId}
+                        aria-controls={this.helperTextId}
+                        {...inputProps}
+                    />
+                    <div class="mdc-slider__track">
+                        <div class="mdc-slider__track--inactive"></div>
+                        <div class="mdc-slider__track--active">
+                            <div class="mdc-slider__track--active_fill"></div>
+                        </div>
+                    </div>
+                    <div class="mdc-slider__thumb">
+                        <div
+                            class="mdc-slider__value-indicator-container"
+                            aria-hidden="true"
+                        >
+                            <div class="mdc-slider__value-indicator">
+                                <span class="mdc-slider__value-indicator-text">
+                                    {this.multiplyByFactor(this.value)}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mdc-slider__thumb-knob"></div>
+                    </div>
+                </div>
+                {this.renderHelperLine()}
+            </Host>
+        );
+    }
+
+    @Watch('disabled')
+    protected watchDisabled() {
+        this.updateDisabledState();
+    }
+
+    @Watch('readonly')
+    protected watchReadonly() {
+        this.updateDisabledState();
+    }
+
+    @Watch('value')
+    protected watchValue() {
+        if (!this.mdcSlider) {
+            return;
+        }
+
+        const value = this.multiplyByFactor(this.getValue());
+        this.mdcSlider.setValue(value);
+
+        if (this.isStepConfigured()) {
+            return;
+        }
+
+        const step = this.multiplyByFactor(this.step);
+        if (!this.isMultipleOfStep(value, step)) {
+            return;
+        }
+
+        this.reCreateSliderWithStep();
+    }
+
+    private renderHelperLine = () => {
+        if (!this.helperText) {
+            return;
+        }
+
+        return (
+            <limel-helper-line
+                helperText={this.helperText}
+                helperTextId={this.helperTextId}
+            />
+        );
+    };
+
+    private initialize = () => {
         const inputElement = this.getInputElement();
         if (!inputElement) {
             return;
@@ -166,139 +301,36 @@ export class Slider {
         }
 
         this.createMDCSlider();
-    }
+    };
 
-    public componentWillLoad() {
-        this.setPercentageClass(this.value);
-    }
+    private reCreateSliderWithStep = () => {
+        const inputElement = this.getInputElement();
+        const step = `${this.multiplyByFactor(this.step)}`;
 
-    public disconnectedCallback() {
+        inputElement.setAttribute('step', step);
+
         this.destroyMDCSlider();
+        this.createMDCSlider();
+    };
+
+    private createMDCSlider = () => {
+        const element = this.getRootElement();
+
+        this.mdcSlider = new MDCSlider(element);
+        this.mdcSlider.listen('MDCSlider:change', this.changeHandler);
+        this.mdcSlider.listen('MDCSlider:input', this.inputHandler);
+    };
+
+    private destroyMDCSlider() {
+        this.mdcSlider.unlisten('MDCSlider:change', this.changeHandler);
+        this.mdcSlider.unlisten('MDCSlider:input', this.inputHandler);
+        this.mdcSlider.destroy();
+        this.mdcSlider = undefined;
     }
 
-    private getContainerClassList() {
-        return {
-            [this.percentageClass]: true,
-            disabled: this.disabled || this.readonly,
-            readonly: this.readonly,
-        };
-    }
-
-    public render() {
-        const inputProps: any = {};
-        if (this.step) {
-            inputProps.step = this.multiplyByFactor(this.step);
-        }
-
-        if (this.disabled || this.readonly) {
-            inputProps.disabled = true;
-        }
-
-        return (
-            <Host class={this.getContainerClassList()}>
-                <label class="slider__label mdc-floating-label mdc-floating-label--float-above">
-                    {this.label}
-                </label>
-                <div class="slider__content-range-container">
-                    <span class="slider__content-min-label">
-                        {this.multiplyByFactor(this.valuemin)}
-                        {this.unit}
-                    </span>
-                    <span class="slider__content-max-label">
-                        {this.multiplyByFactor(this.valuemax)}
-                        {this.unit}
-                    </span>
-                </div>
-                <div
-                    class={{
-                        'mdc-slider': true,
-                        'mdc-slider--discrete': true,
-                        'mdc-slider--disabled': this.disabled || this.readonly,
-                    }}
-                >
-                    <input
-                        class="mdc-slider__input"
-                        type="range"
-                        min={this.multiplyByFactor(this.valuemin)}
-                        max={this.multiplyByFactor(this.valuemax)}
-                        value={this.multiplyByFactor(this.value)}
-                        name="volume"
-                        aria-label="Discrete slider demo"
-                        {...inputProps}
-                    />
-                    <div class="mdc-slider__track">
-                        <div class="mdc-slider__track--inactive"></div>
-                        <div class="mdc-slider__track--active">
-                            <div class="mdc-slider__track--active_fill"></div>
-                        </div>
-                    </div>
-                    <div class="mdc-slider__thumb">
-                        <div
-                            class="mdc-slider__value-indicator-container"
-                            aria-hidden="true"
-                        >
-                            <div class="mdc-slider__value-indicator">
-                                <span class="mdc-slider__value-indicator-text">
-                                    {this.multiplyByFactor(this.value)}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="mdc-slider__thumb-knob"></div>
-                    </div>
-                </div>
-                {this.renderHelperLine()}
-            </Host>
-        );
-    }
-
-    private renderHelperLine() {
-        if (!this.helperText) {
-            return;
-        }
-
-        return <limel-helper-line helperText={this.helperText} />;
-    }
-
-    @Watch('disabled')
-    protected watchDisabled() {
-        this.updateDisabledState();
-    }
-
-    @Watch('readonly')
-    protected watchReadonly() {
-        this.updateDisabledState();
-    }
-
-    @Watch('value')
-    protected watchValue() {
-        if (!this.mdcSlider) {
-            return;
-        }
-
-        const value = this.multiplyByFactor(this.getValue());
-        this.mdcSlider.setValue(value);
-
-        if (this.isStepConfigured()) {
-            return;
-        }
-
-        const step = this.multiplyByFactor(this.step);
-        if (!this.isMultipleOfStep(value, step)) {
-            return;
-        }
-
-        this.reCreateSliderWithStep();
-    }
-
-    private updateDisabledState() {
-        if (!this.mdcSlider) {
-            return;
-        }
-
-        this.mdcSlider.setDisabled(this.disabled || this.readonly);
-    }
-
-    private changeHandler = (event) => {
+    private changeHandler = (
+        event: CustomEvent<MDCSliderChangeEventDetail>
+    ) => {
         let value = event.detail.value;
         const step = this.multiplyByFactor(this.step);
 
@@ -309,55 +341,75 @@ export class Slider {
         this.change.emit(value / this.factor);
     };
 
-    private multiplyByFactor(value) {
-        return Math.round(value * this.factor);
-    }
+    private inputHandler = (event: CustomEvent<MDCSliderChangeEventDetail>) => {
+        this.setPercentageClass(event.detail.value / this.factor);
+    };
 
-    private getValue() {
+    private getContainerClassList = () => {
+        return {
+            [this.percentageClass]: true,
+            disabled: this.disabled || this.readonly,
+            readonly: this.readonly,
+        };
+    };
+
+    private resizeObserverCallback = () => {
+        this.mdcSlider?.layout();
+    };
+
+    private updateDisabledState = () => {
+        if (!this.mdcSlider) {
+            return;
+        }
+
+        this.mdcSlider?.setDisabled(this.disabled || this.readonly);
+    };
+
+    private multiplyByFactor = (value: number) => {
+        return Math.round(value * this.factor);
+    };
+
+    private getValue = () => {
         let value = this.value;
         if (!isFinite(value)) {
             value = this.valuemin;
         }
 
         return value;
-    }
+    };
 
-    private inputHandler(event) {
-        this.setPercentageClass(event.detail.value / this.factor);
-    }
-
-    private setPercentageClass(value) {
+    private setPercentageClass = (value: number) => {
         this.percentageClass = getPercentageClass(
             (value - this.valuemin) / (this.valuemax - this.valuemin)
         );
-    }
+    };
 
-    private isMultipleOfStep(value: number, step: number): boolean {
+    private isMultipleOfStep = (value: number, step: number): boolean => {
         if (!step) {
             return true;
         }
 
         return value % step === 0;
-    }
+    };
 
-    private roundToStep(value: number, step: number): number {
+    private roundToStep = (value: number, step: number): number => {
         return Math.round(value / step) * step;
-    }
+    };
 
-    private getRootElement(): HTMLElement | undefined {
+    private getRootElement = (): HTMLElement | undefined => {
         return this.rootElement.shadowRoot.querySelector('.mdc-slider');
-    }
+    };
 
-    private getInputElement(): HTMLInputElement | undefined {
+    private getInputElement = (): HTMLInputElement | undefined => {
         const element = this.getRootElement();
         if (!element) {
             return;
         }
 
         return element.querySelector('input');
-    }
+    };
 
-    private isStepConfigured(): boolean {
+    private isStepConfigured = (): boolean => {
         if (!this.step) {
             return true;
         }
@@ -368,30 +420,5 @@ export class Slider {
         }
 
         return input.hasAttribute('step');
-    }
-
-    private reCreateSliderWithStep() {
-        const inputElement = this.getInputElement();
-        const step = `${this.multiplyByFactor(this.step)}`;
-
-        inputElement.setAttribute('step', step);
-
-        this.destroyMDCSlider();
-        this.createMDCSlider();
-    }
-
-    private createMDCSlider() {
-        const element = this.getRootElement();
-
-        this.mdcSlider = new MDCSlider(element);
-        this.mdcSlider.listen('MDCSlider:change', this.changeHandler);
-        this.mdcSlider.listen('MDCSlider:input', this.inputHandler);
-    }
-
-    private destroyMDCSlider() {
-        this.mdcSlider.unlisten('MDCSlider:change', this.changeHandler);
-        this.mdcSlider.unlisten('MDCSlider:input', this.inputHandler);
-        this.mdcSlider.destroy();
-        this.mdcSlider = undefined;
-    }
+    };
 }

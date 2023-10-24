@@ -1,4 +1,4 @@
-import { ListItem, ListSeparator, MenuItem } from '@limetech/lime-elements';
+import { ListItem, ListSeparator, MenuItem } from '../../interface';
 import { h } from '@stencil/core';
 import { CheckboxTemplate } from '../checkbox/checkbox.template';
 import { ListRendererConfig } from './list-renderer-config';
@@ -114,7 +114,12 @@ export class ListRenderer {
         index: number
     ) => {
         if ('separator' in item) {
-            return <li class="mdc-deprecated-list-divider" role="separator" />;
+            return (
+                <li class="mdc-deprecated-list-divider" role="separator">
+                    {this.rendertext(item)}
+                    <div class="limel-list-divider-line" />
+                </li>
+            );
         }
 
         if (['radio', 'checkbox'].includes(this.config.type)) {
@@ -148,6 +153,12 @@ export class ListRenderer {
                 {this.renderActionMenu(item.actions)}
             </li>
         );
+    };
+
+    private rendertext = (item: ListSeparator) => {
+        if ('text' in item) {
+            return <h2 class="limel-list-divider-title">{item.text}</h2>;
+        }
     };
 
     private getPrimaryComponent(item: ListItem): Element {

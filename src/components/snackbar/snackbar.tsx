@@ -1,4 +1,4 @@
-import { Languages } from '@limetech/lime-elements';
+import { Languages } from '../../interface';
 import { MDCSnackbar, MDCSnackbarCloseEvent } from '@material/snackbar';
 import {
     Component,
@@ -36,6 +36,7 @@ import translate from '../../global/translations';
  * @exampleComponent limel-example-snackbar-dismissible
  * @exampleComponent limel-example-snackbar-with-action
  * @exampleComponent limel-example-snackbar-with-changing-messages
+ * @exampleComponent limel-example-snackbar-positioning
  */
 
 @Component({

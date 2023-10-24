@@ -1,6 +1,4 @@
-const CACHE_NAME = '@limetech/lime-elements/icons';
-
-export class IconCache {
+export class CacheStorageIconCache {
     /*
      * Cache of all loaded SVGs
      */
@@ -8,15 +6,15 @@ export class IconCache {
 
     private promises: Record<string, Promise<void>> = {};
 
-    constructor() {
-        this.cache = caches.open(CACHE_NAME);
+    constructor(cache: Promise<Cache>) {
+        this.cache = cache;
     }
 
     /**
      * Get icon data from the cache
      * @param {string} name name of the icon
      * @param {string} path path on the server where the assets are located
-     * @returns {string} svg markup
+     * @returns {Promise<string>} svg markup
      */
     public async get(name: string, path: string = ''): Promise<string> {
         const cache = await this.cache;
@@ -78,8 +76,3 @@ export class IconCache {
         return `${iconPath}assets/icons/${name}.svg`;
     }
 }
-
-const iconCache = new IconCache();
-export default (() => {
-    return iconCache;
-})();

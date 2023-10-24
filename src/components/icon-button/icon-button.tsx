@@ -1,4 +1,9 @@
 import { Component, Element, h, Prop } from '@stencil/core';
+import {
+    makeEnterClickable,
+    removeEnterClickable,
+} from 'src/util/make-enter-clickable';
+import { createRandomString } from '../../util/random-string';
 
 /**
  * @exampleComponent limel-example-icon-button-basic
@@ -45,6 +50,14 @@ export class IconButton {
         this.initialize();
     }
 
+    public componentWillLoad() {
+        makeEnterClickable(this.host);
+    }
+
+    public disconnectedCallback() {
+        removeEnterClickable(this.host);
+    }
+
     public componentDidLoad() {
         this.initialize();
     }
@@ -58,20 +71,26 @@ export class IconButton {
 
     public render() {
         const buttonAttributes: { tabindex?: string } = {};
+        const tooltipId = createRandomString();
+
         if (this.host.hasAttribute('tabindex')) {
             buttonAttributes.tabindex = this.host.getAttribute('tabindex');
         }
 
         return (
             <button
-                class="mdc-icon-button"
                 disabled={this.disabled}
-                aria-label={this.label}
-                title={this.label}
+                id={tooltipId}
                 {...buttonAttributes}
             >
                 <limel-icon name={this.icon} badge={true} />
+                {this.renderTooltip(tooltipId)}
             </button>
         );
+    }
+    private renderTooltip(tooltipId) {
+        if (this.label) {
+            return <limel-tooltip elementId={tooltipId} label={this.label} />;
+        }
     }
 }

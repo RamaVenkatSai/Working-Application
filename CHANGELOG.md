@@ -1,3 +1,513 @@
+# [37.1.0-next.46](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.45...v37.1.0-next.46) (2023-10-24)
+
+
+### Bug Fixes
+
+
+* **types:** export a missing type 'LimeSchemaOptions' ([324f611](https://github.com/Lundalogik/lime-elements/commit/324f61118ce616a0511cc495a5ff0deceac41ac9))
+
+# [37.1.0-next.45](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.44...v37.1.0-next.45) (2023-10-24)
+
+
+### Features
+
+
+* **code-editor:** add jinja2 language mode type ([d43ddb2](https://github.com/Lundalogik/lime-elements/commit/d43ddb25423aed26ceb62b63cf371b233bf28cda))
+
+# [37.1.0-next.44](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.43...v37.1.0-next.44) (2023-10-23)
+
+
+### Bug Fixes
+
+
+* **breadcrumbs:** don't render icon if name isn't specified ([6494574](https://github.com/Lundalogik/lime-elements/commit/64945745dd5cbb52f61650dbc613f32e78e6a37b))
+
+# [37.1.0-next.43](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.42...v37.1.0-next.43) (2023-10-23)
+
+
+### Features
+
+
+* **dialog:** add actions to the heading area ([a8b7759](https://github.com/Lundalogik/lime-elements/commit/a8b775943b73a8a14b7a8cd80d9e446018a1326d))
+
+# [37.1.0-next.42](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.41...v37.1.0-next.42) (2023-10-16)
+
+
+### Bug Fixes
+
+
+* **input-field:** apply the user's locale when formatting numbers ([600b8d3](https://github.com/Lundalogik/lime-elements/commit/600b8d3ce604c18899e89ae3065135afd503df74)), closes [Lundalogik/crm-feature#3673](https://github.com/Lundalogik/crm-feature/issues/3673)
+
+### Features
+
+
+* **config:** provide better type for setting global config ([22a8d13](https://github.com/Lundalogik/lime-elements/commit/22a8d137972c38037cfd2244076be57fb7d10443))
+
+# [37.1.0-next.41](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.40...v37.1.0-next.41) (2023-10-16)
+
+
+### Features
+
+
+* **src:** export `Link` & `Icon` interfaces ([a13f668](https://github.com/Lundalogik/lime-elements/commit/a13f66888a6c5e2c36783ca0ed83f2e68c915cbd))
+
+# [37.1.0-next.40](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.39...v37.1.0-next.40) (2023-10-12)
+
+
+### Bug Fixes
+
+
+* **types:** export missing types again ([cd4f165](https://github.com/Lundalogik/lime-elements/commit/cd4f16544d27b616395fcbc8adb5518582a6d80b)), closes [#2522](https://github.com/Lundalogik/lime-elements/issues/2522)
+
+# [37.1.0-next.39](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.38...v37.1.0-next.39) (2023-10-10)
+
+
+### Bug Fixes
+
+
+* **list:** recreate the mdcList on item change ([d7477fd](https://github.com/Lundalogik/lime-elements/commit/d7477fdcfb5cab3c2019d33f0162809ce1acedf1))
+
+# [37.1.0-next.38](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.37...v37.1.0-next.38) (2023-10-04)
+
+
+### Bug Fixes
+
+
+* **file:** render dropzone help text better when file picker has a small width ([0de38f2](https://github.com/Lundalogik/lime-elements/commit/0de38f283a652cb217fa62330bdc44832b831287))
+
+# [37.1.0-next.37](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.36...v37.1.0-next.37) (2023-10-03)
+
+
+### Bug Fixes
+
+
+* **types:** ensure exported types work as expected ([8422c4f](https://github.com/Lundalogik/lime-elements/commit/8422c4f1d116ab1661120c08882efcfb777909df))
+
+# [37.1.0-next.36](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.35...v37.1.0-next.36) (2023-10-03)
+
+
+### Bug Fixes
+
+
+* **markdown:** update remark versions to latest ([fa6e7dc](https://github.com/Lundalogik/lime-elements/commit/fa6e7dc4273e5c75571fdc01c8c0d39760c9ac7e))
+
+# [37.1.0-next.35](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.34...v37.1.0-next.35) (2023-10-02)
+
+
+### Bug Fixes
+
+
+* **action-bar:** do not display tooltip of invisible action buttons ([1abc7a2](https://github.com/Lundalogik/lime-elements/commit/1abc7a2324be66f509bacdb147f7d2557206fa80))
+
+# [37.1.0-next.34](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.33...v37.1.0-next.34) (2023-09-29)
+
+
+### Features
+
+
+* **list:** enable adding titles to separators ([c3d4f01](https://github.com/Lundalogik/lime-elements/commit/c3d4f017e86f2b12d1180bdeaf50352ab2c10865))
+* **menu:** enable adding titles to separators ([edf9d22](https://github.com/Lundalogik/lime-elements/commit/edf9d226081432380848cbc9551841d8cd3393d5))
+
+# [37.1.0-next.33](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.32...v37.1.0-next.33) (2023-09-29)
+
+
+### Bug Fixes
+
+
+* **input-field:** handle completions changing after component is loaded ([0d3ff50](https://github.com/Lundalogik/lime-elements/commit/0d3ff504f9f51ca6cf3df0483ddd82bf80426bfd))
+
+# [37.1.0-next.32](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.31...v37.1.0-next.32) (2023-09-29)
+
+
+### Bug Fixes
+
+
+* **picker:** don't display clear all button when the suggestions are being shown ([e0a89e7](https://github.com/Lundalogik/lime-elements/commit/e0a89e7ce4736517b1ce73d1a100d1f09b462a57))
+
+# [37.1.0-next.31](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.30...v37.1.0-next.31) (2023-09-29)
+
+
+### Features
+
+
+* **markdown:** create markdown component ([1d65586](https://github.com/Lundalogik/lime-elements/commit/1d6558681e5bb11f66742b852ae7b77a7bbdf1df))
+
+# [37.1.0-next.30](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.29...v37.1.0-next.30) (2023-09-29)
+
+
+### Bug Fixes
+
+
+* **dialog:** fade out top & bottom edges of the scrolling content ([5589d59](https://github.com/Lundalogik/lime-elements/commit/5589d598d981907e3d44aa191415cf2d04fc7bbf))
+
+# [37.1.0-next.29](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.28...v37.1.0-next.29) (2023-09-27)
+
+
+### Features
+
+
+* **breadcrumbs:** add new component ([9531e7a](https://github.com/Lundalogik/lime-elements/commit/9531e7a77c86ecc01492d0f98d932b766bea4d08)), closes [Lundalogik/crm-feature#3042](https://github.com/Lundalogik/crm-feature/issues/3042)
+
+# [37.1.0-next.28](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.27...v37.1.0-next.28) (2023-09-25)
+
+
+### Bug Fixes
+
+
+* **form:** only log schema validation errors ([ee33caa](https://github.com/Lundalogik/lime-elements/commit/ee33caa90db83afe52d744b699aa533be42a6e2f))
+
+# [37.1.0-next.27](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.26...v37.1.0-next.27) (2023-09-20)
+
+
+### Bug Fixes
+
+
+* **form:** unmount root using correct API ([d0ac79f](https://github.com/Lundalogik/lime-elements/commit/d0ac79f4f6452960413e9c446668887f9c7685a6))
+
+# [37.1.0-next.26](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.25...v37.1.0-next.26) (2023-09-20)
+
+
+### Bug Fixes
+
+
+* **form:** make form compatible with Ajv version 8 ([dfda466](https://github.com/Lundalogik/lime-elements/commit/dfda46666d7ca8767dc6ba20954eae903015a78d)), closes [Lundalogik/crm-feature#3625](https://github.com/Lundalogik/crm-feature/issues/3625)
+* **form:** replace id with $id in schema ([e0f4efd](https://github.com/Lundalogik/lime-elements/commit/e0f4efde038878ab6e33a3ea3ae5071f8f8c4bff))
+* **form:** use React 18 compatible API ([681bae7](https://github.com/Lundalogik/lime-elements/commit/681bae77ed42200ab98073330555c03cbc1ebe61))
+
+# [37.1.0-next.25](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.24...v37.1.0-next.25) (2023-09-19)
+
+
+### Bug Fixes
+
+
+* **popover:** prevent large content to overflow the component's surface ([93ecbd9](https://github.com/Lundalogik/lime-elements/commit/93ecbd98faee4a9f75067054e4cf41f29ecdc9b6))
+
+## [37.1.0-next.24](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.23...v37.1.0-next.24) (2023-09-15)
+
+
+### Bug Fixes
+
+* **checkbox:** make color of icons in `readonly` more dark ([d344015](https://github.com/Lundalogik/lime-elements/commit/d344015fd3a09cbe92c64c832ef6f1fd3cdc629c))
+
+## [37.1.0-next.23](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.22...v37.1.0-next.23) (2023-09-14)
+
+
+### Bug Fixes
+
+* **checkbox:** make `readonly` styles less confusing for end-users ([9361b7b](https://github.com/Lundalogik/lime-elements/commit/9361b7bd777a34a81b2a9c4fc7705c972aca138d))
+* **switch:** improve `disabled` styles ([c30c8cb](https://github.com/Lundalogik/lime-elements/commit/c30c8cbbbbf426a9a68ce86e2be86c9c6ba38bc4))
+* **switch:** make `readonly` styles less confusing for end-users ([e076395](https://github.com/Lundalogik/lime-elements/commit/e076395dcef5ba7e7b8537c30425ed5314fcded5))
+
+## [37.1.0-next.22](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.21...v37.1.0-next.22) (2023-09-14)
+
+
+### Bug Fixes
+
+* **menu:** prevent long menus to overflow out of the screen ([57ef0e4](https://github.com/Lundalogik/lime-elements/commit/57ef0e4a436223dc2ccc78503bae2166b58a20f4))
+
+## [37.1.0-next.21](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.20...v37.1.0-next.21) (2023-09-11)
+
+
+### Bug Fixes
+
+* **form:** separate code editor from other elements ([6251e16](https://github.com/Lundalogik/lime-elements/commit/6251e16f718d4f14aa39f0f50863867107e41434))
+
+## [37.1.0-next.20](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.19...v37.1.0-next.20) (2023-09-07)
+
+
+### Bug Fixes
+
+* **action-bar-item:** make disabled button visible ([0226863](https://github.com/Lundalogik/lime-elements/commit/02268631157fe1b99c6744250febe96eb55461dd))
+
+## [37.1.0-next.19](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.18...v37.1.0-next.19) (2023-09-01)
+
+
+### Features
+
+* **form:** add support for disabled options when using a select ([e9d446c](https://github.com/Lundalogik/lime-elements/commit/e9d446ce04989d9fac61fcc7e3daf3093df7d3d6))
+
+## [37.1.0-next.18](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.17...v37.1.0-next.18) (2023-08-29)
+
+
+### Bug Fixes
+
+* **linear-progress:** avoid rendering the component unless the value is a number ([30ede63](https://github.com/Lundalogik/lime-elements/commit/30ede632321043e928703e62ce7fae98ee5d205a)), closes [Lundalogik/crm-feature#3585](https://github.com/Lundalogik/crm-feature/issues/3585)
+
+## [37.1.0-next.17](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.16...v37.1.0-next.17) (2023-08-25)
+
+
+### Features
+
+* **action-bar-icon-interface:** make `icon` field required when `iconOnly` is true ([52ed447](https://github.com/Lundalogik/lime-elements/commit/52ed4479e09d8ce93ef1d86ca6d44f2f2cf94112))
+
+## [37.1.0-next.16](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.15...v37.1.0-next.16) (2023-08-23)
+
+
+### Bug Fixes
+
+* **table:** avoid flickering of cursor while hovering & moving the cursor on rows ([8a1ef7c](https://github.com/Lundalogik/lime-elements/commit/8a1ef7c4a63a4b47604e1182b3de0b3a6ca03dcb))
+* **table:** differentiate interactivity of rows vs. components in cells ([000c070](https://github.com/Lundalogik/lime-elements/commit/000c070aecabd1f72a26c1dcc06496e3192977d2))
+
+## [37.1.0-next.15](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.14...v37.1.0-next.15) (2023-08-16)
+
+
+### Features
+
+* **tooltip:** add `openDirection` prop ([4f3d740](https://github.com/Lundalogik/lime-elements/commit/4f3d740416a86ac75578c9f51f07ce016db9710c))
+
+
+### Bug Fixes
+
+* **dock:** render tooltips in a better place ([8b12daa](https://github.com/Lundalogik/lime-elements/commit/8b12daa7414c707a42b8ff8502f3b72225a7cdf7))
+
+## [37.1.0-next.14](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.13...v37.1.0-next.14) (2023-08-16)
+
+
+### Features
+
+* **tooltip:** add new component `limel-tooltip` ([df4f393](https://github.com/Lundalogik/lime-elements/commit/df4f3938935b655ca4d92c2abb15776abfe06a3c))
+
+## [37.1.0-next.13](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.12...v37.1.0-next.13) (2023-08-11)
+
+
+### Bug Fixes
+
+* **portal:** reflect primitive properties as attributes ([c63bce7](https://github.com/Lundalogik/lime-elements/commit/c63bce79b465c7e595f1151b59139a5e52bc1d0f))
+
+## [37.1.0-next.12](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.11...v37.1.0-next.12) (2023-08-04)
+
+
+### Bug Fixes
+
+* **slider:** fix bug where slider might break if the component is resized ([3ef298a](https://github.com/Lundalogik/lime-elements/commit/3ef298aa07ae3f0444bd2530ad4c106827ed7cca)), closes [Lundalogik/crm-feature#3550](https://github.com/Lundalogik/crm-feature/issues/3550) [Lundalogik/crm-feature#3287](https://github.com/Lundalogik/crm-feature/issues/3287) [#1850](https://github.com/Lundalogik/lime-elements/issues/1850)
+
+## [37.1.0-next.11](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.10...v37.1.0-next.11) (2023-08-03)
+
+
+### Features
+
+* **switch:** add possibility to have a `helperText` ([9e44bc2](https://github.com/Lundalogik/lime-elements/commit/9e44bc2a6a59134b83b77b233440a042e4b3536a))
+
+## [37.1.0-next.10](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.9...v37.1.0-next.10) (2023-07-25)
+
+
+### Bug Fixes
+
+* **icon-cache:** can't always open the icon cache ([2feb726](https://github.com/Lundalogik/lime-elements/commit/2feb72657e2f34113513160d4a5e14c787c5065d)), closes [Lundalogik/crm-feature#3546](https://github.com/Lundalogik/crm-feature/issues/3546)
+
+## [37.1.0-next.9](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.8...v37.1.0-next.9) (2023-07-24)
+
+
+### Bug Fixes
+
+* **color-palette:** make swatches interactive & navigable using the `Tab` & `Enter` keys ([fb7168d](https://github.com/Lundalogik/lime-elements/commit/fb7168d4ee4ecb44e10620d3d3b577badb6e36f7))
+* **color-picker:** enable opening the color palette using the `Enter` key ([b2a323c](https://github.com/Lundalogik/lime-elements/commit/b2a323c237a8f9f6f7ab50004ca24d6a6cae94d3))
+
+## [37.1.0-next.8](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.7...v37.1.0-next.8) (2023-07-21)
+
+
+### Features
+
+* **icon-button:** override default browser behavior on clicking enter ([6560325](https://github.com/Lundalogik/lime-elements/commit/6560325e9aee66336f64d0c4aff8622b767574a8))
+
+## [37.1.0-next.7](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.6...v37.1.0-next.7) (2023-07-21)
+
+
+### Features
+
+* **action-bar:** add new component ([8faae2a](https://github.com/Lundalogik/lime-elements/commit/8faae2a98f918f9c075d6192ec23d5c0aa28ecfd))
+
+## [37.1.0-next.6](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.5...v37.1.0-next.6) (2023-07-21)
+
+
+### Features
+
+* **switch:** override default browser behavior on clicking enter ([1633f0f](https://github.com/Lundalogik/lime-elements/commit/1633f0fd602ea90cf99a4e02598269116bc3b83b))
+
+## [37.1.0-next.5](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.4...v37.1.0-next.5) (2023-07-21)
+
+
+### Features
+
+* **collapsible-section:** make enter clickable ([a66e820](https://github.com/Lundalogik/lime-elements/commit/a66e820f3a05bae26e42bace2ea5f12f6b4d777d))
+
+
+### Bug Fixes
+
+* **makeEnterClickable:** avoid calling forceUpdate() on non-component elements ([9601867](https://github.com/Lundalogik/lime-elements/commit/96018674c61138803902f794343821a05ec2da74))
+
+## [37.1.0-next.4](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.3...v37.1.0-next.4) (2023-07-17)
+
+
+### Bug Fixes
+
+* **schema-field:** throw warning instead of error if a custom component is undefined ([52c603e](https://github.com/Lundalogik/lime-elements/commit/52c603ea2e14ccb9bf62c61a7a9cfedd4e680090))
+
+## [37.1.0-next.3](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.2...v37.1.0-next.3) (2023-07-17)
+
+
+### Bug Fixes
+
+* **checkbox:** create a unique id for the helper text & use it by `aria` attributes ([38e4d29](https://github.com/Lundalogik/lime-elements/commit/38e4d295d4cc265d299d5d8c7bb5dbd28aefc284))
+
+## [37.1.0-next.2](https://github.com/Lundalogik/lime-elements/compare/v37.1.0-next.1...v37.1.0-next.2) (2023-07-13)
+
+
+### Features
+
+* **button-like-components:** add helper function for enter clicking ([a245649](https://github.com/Lundalogik/lime-elements/commit/a245649ab659cad54886147830d2f1e82f4a1ea8))
+
+## [37.1.0-next.1](https://github.com/Lundalogik/lime-elements/compare/v37.0.0...v37.1.0-next.1) (2023-07-10)
+
+
+### Features
+
+* **getRandomString:** update to use crypto.UUID() ([7d8ce2e](https://github.com/Lundalogik/lime-elements/commit/7d8ce2eb2caeacbc022032cfbc17f02b6057295e))
+
+
+### Bug Fixes
+
+* **input-field:** create unique IDs for each helper text on the page ([4330c31](https://github.com/Lundalogik/lime-elements/commit/4330c31b42f326470fda52ecaf3e3bfca7ca1dec))
+* **input-field:** create unique IDs for each input field's `label` on the page ([8082490](https://github.com/Lundalogik/lime-elements/commit/8082490b9e953d71f8be1c4fe0b2792d7f1826e1))
+
+## [37.0.0](https://github.com/Lundalogik/lime-elements/compare/v36.4.0...v37.0.0) (2023-07-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* We have updated StencilJS to v3. In this new version of Stencil,
+`input` events has been strongly typed. This means that your event
+handlers for `input` events may need to be updated.
+
+Example:
+
+```diff
+-    private handleInput = (event: CustomEvent<string>) => {
+-        this.textValue = event.detail;
++    private handleInput = (
++        event: LimelChipSetCustomEvent<string> | InputEvent
++    ) => {
++        if (event instanceof CustomEvent) {
++            this.textValue = event.detail;
++        }
+     };
+```
+
+Here, we not only update the type of the custom event we want to
+listen for from the generic `CustomEvent<string>` to the more
+specific `LimelChipSetCustomEvent<string>`, we also update the
+type of the event to include the type of the native `input` event.
+We then check the actual type of the event, and act on it only if
+it is the kind we are interested in (`CustomEvent`).
+
+This is an improvement of the event handler, since the earlier form
+would have caught any native `input` events too, and tried to act
+on it, with unexpected results.
+
+### Bug Fixes
+
+* **slider:** correctly label the `input` element, using `aria-labledby` & a unique id ([126c445](https://github.com/Lundalogik/lime-elements/commit/126c445decfc97aa6cf84b24b76b76d20c430c95))
+* **slider:** use a unique id for the helper text & use it by `aria-controls` ([a9a1662](https://github.com/Lundalogik/lime-elements/commit/a9a1662581a22d9f59b022c2d9fdc5ffc5472370))
+
+
+### Miscellaneous Chores
+
+* update StencilJS from v2 to v3 ([60578ba](https://github.com/Lundalogik/lime-elements/commit/60578ba0501c9a9cd8d0de10bd1bbfbc207c49af))
+
+## [37.0.0-next.1](https://github.com/Lundalogik/lime-elements/compare/v36.4.1-next.1...v37.0.0-next.1) (2023-07-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* We have updated StencilJS to v3. In this new version of Stencil,
+`input` events has been strongly typed. This means that your event
+handlers for `input` events may need to be updated.
+
+Example:
+
+```diff
+-    private handleInput = (event: CustomEvent<string>) => {
+-        this.textValue = event.detail;
++    private handleInput = (
++        event: LimelChipSetCustomEvent<string> | InputEvent
++    ) => {
++        if (event instanceof CustomEvent) {
++            this.textValue = event.detail;
++        }
+     };
+```
+
+Here, we not only update the type of the custom event we want to
+listen for from the generic `CustomEvent<string>` to the more
+specific `LimelChipSetCustomEvent<string>`, we also update the
+type of the event to include the type of the native `input` event.
+We then check the actual type of the event, and act on it only if
+it is the kind we are interested in (`CustomEvent`).
+
+This is an improvement of the event handler, since the earlier form
+would have caught any native `input` events too, and tried to act
+on it, with unexpected results.
+
+### Miscellaneous Chores
+
+* update StencilJS from v2 to v3 ([60578ba](https://github.com/Lundalogik/lime-elements/commit/60578ba0501c9a9cd8d0de10bd1bbfbc207c49af))
+
+## [36.4.1-next.1](https://github.com/Lundalogik/lime-elements/compare/v36.4.0...v36.4.1-next.1) (2023-07-07)
+
+
+### Bug Fixes
+
+* **slider:** correctly label the `input` element, using `aria-labledby` & a unique id ([126c445](https://github.com/Lundalogik/lime-elements/commit/126c445decfc97aa6cf84b24b76b76d20c430c95))
+* **slider:** use a unique id for the helper text & use it by `aria-controls` ([a9a1662](https://github.com/Lundalogik/lime-elements/commit/a9a1662581a22d9f59b022c2d9fdc5ffc5472370))
+
+## [36.4.0](https://github.com/Lundalogik/lime-elements/compare/v36.3.1...v36.4.0) (2023-07-06)
+
+
+### Features
+
+* **action-bar:** add new component ([537aa0f](https://github.com/Lundalogik/lime-elements/commit/537aa0f41326b55859622f3e06cd13e022b326e2)), closes [Lundalogik/crm-feature#3379](https://github.com/Lundalogik/crm-feature/issues/3379)
+* **icon:** use browser request cache to cache icons ([bdaf181](https://github.com/Lundalogik/lime-elements/commit/bdaf181b0dc656c66226b8e639e14aceb932414b))
+* **list:** add a css prop for margin around the list ([e26d8e4](https://github.com/Lundalogik/lime-elements/commit/e26d8e4fa7d3f260bd00795453aba3fbd951382e))
+* **picker:** fix picker clearing input and search results ([3319451](https://github.com/Lundalogik/lime-elements/commit/33194512328433fa85a3a86929dc10ed1618ca08))
+* **snackbar:** add CSS variables for positioning the snackbar ([826de70](https://github.com/Lundalogik/lime-elements/commit/826de706ef465434ce00aada6bb503a209b0f67f))
+
+
+### Bug Fixes
+
+* **action-bar:** add observers on re-connect ([0276698](https://github.com/Lundalogik/lime-elements/commit/02766988267040de54ade105a2c3b59e5d45ed8f))
+* **callout:** support custom types ([c92c397](https://github.com/Lundalogik/lime-elements/commit/c92c39737c3e54e129ad0434043b0fd3cb4877e8))
+* **input-field:** show "clear all" button when field is not empty ([30fc78b](https://github.com/Lundalogik/lime-elements/commit/30fc78b704558505029abb8c458c303b17d5214d))
+* **list:** correctly enable usage of `--list-margin` variable ([acb21ca](https://github.com/Lundalogik/lime-elements/commit/acb21ca00795a0d03ca814d6b295e0898e08940e))
+* **popover:** make sure the popover surface never grows out of the availabel screen space ([4ac34ed](https://github.com/Lundalogik/lime-elements/commit/4ac34ed34685099b06d0d1b92828574c854d98de))
+* **select:** prevent truncation in dropdown options, when the component has small width ([717d149](https://github.com/Lundalogik/lime-elements/commit/717d1496dbe85822d655826995746226703d13fe))
+* **shortcut:** keep the same custom background color when hovered ([15d1dc2](https://github.com/Lundalogik/lime-elements/commit/15d1dc217f4c6f28f5d98deed3c4a3c361cf033c))
+* **snackbar:** make `dismissible` `true` by default ([a1f27ba](https://github.com/Lundalogik/lime-elements/commit/a1f27ba8e03f2ab4015516e41731fb98e15c6fe1))
+* **snackbar:** make it inherit its minimum width from its own content ([e5dde45](https://github.com/Lundalogik/lime-elements/commit/e5dde4510d391aea000c18fa63c21abc44b224eb))
+* **snackbar:** make it stick out more from the rest of the UI ([c15e749](https://github.com/Lundalogik/lime-elements/commit/c15e7496e0926dbd68d04ee48ba475c694d7340f))
+* **snackbar:** make layout more compact ([0db83fc](https://github.com/Lundalogik/lime-elements/commit/0db83fc6ae23b1b60ace5721134ae9b0f8303616))
+* **snackbar:** visualize how much time is left till the snackbar is auto-dismissed ([43afdf0](https://github.com/Lundalogik/lime-elements/commit/43afdf09ad44c6b25e236ecc5a31bcf2d95949f7))
+
+## [36.4.0-next.9](https://github.com/Lundalogik/lime-elements/compare/v36.4.0-next.8...v36.4.0-next.9) (2023-06-29)
+
+
+### Features
+
+* **snackbar:** add CSS variables for positioning the snackbar ([826de70](https://github.com/Lundalogik/lime-elements/commit/826de706ef465434ce00aada6bb503a209b0f67f))
+
+## [36.4.0-next.8](https://github.com/Lundalogik/lime-elements/compare/v36.4.0-next.7...v36.4.0-next.8) (2023-06-22)
+
+
+### Bug Fixes
+
+* **popover:** make sure the popover surface never grows out of the availabel screen space ([4ac34ed](https://github.com/Lundalogik/lime-elements/commit/4ac34ed34685099b06d0d1b92828574c854d98de))
+
+## [36.4.0-next.7](https://github.com/Lundalogik/lime-elements/compare/v36.4.0-next.6...v36.4.0-next.7) (2023-06-21)
+
+
+### Bug Fixes
+
+* **list:** correctly enable usage of `--list-margin` variable ([acb21ca](https://github.com/Lundalogik/lime-elements/commit/acb21ca00795a0d03ca814d6b295e0898e08940e))
+
 ## [36.4.0-next.6](https://github.com/Lundalogik/lime-elements/compare/v36.4.0-next.5...v36.4.0-next.6) (2023-06-19)
 
 

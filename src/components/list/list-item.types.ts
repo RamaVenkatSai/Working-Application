@@ -1,4 +1,4 @@
-import { MenuItem } from '../menu/menu.types';
+import { MenuItem } from '../../interface';
 
 export interface ListItem<T = any> {
     /**
@@ -49,6 +49,8 @@ export interface ListItem<T = any> {
 
 export interface ListSeparator {
     separator: true;
+
+    text?: string;
 }
 
 export interface ListComponent {
