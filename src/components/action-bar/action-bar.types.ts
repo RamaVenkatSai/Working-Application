@@ -1,4 +1,4 @@
-import { MenuItem } from '../../interface';
+import { MenuItem } from '../menu/menu.types';
 
 /**
  * Renders the button in the action bar without their labels.
