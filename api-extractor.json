@@ -6,7 +6,14 @@
   "mainEntryPointFilePath": "<projectFolder>/dist/types/index.d.ts",
   "bundledPackages": [],
   "compiler": {
-    "tsconfigFilePath": "<projectFolder>/tsconfig.dist.json"
+    "tsconfigFilePath": "<projectFolder>/tsconfig.dist.json",
+    "overrideTsconfig": {
+      "baseUrl": "/Users/adrian.schmidt/src/lime-elements",
+      "resolveJsonModule": false,
+      "skipLibCheck": true,
+      "typeRoots": [],
+      "pathsBasePath": "/Users/adrian.schmidt/src/lime-elements"
+    }
   },
   "apiReport": {
     "enabled": true
