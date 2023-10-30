@@ -5,7 +5,9 @@
   "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
   "mainEntryPointFilePath": "<projectFolder>/dist/types/index.d.ts",
   "bundledPackages": [],
-  "compiler": {},
+  "compiler": {
+    "tsconfigFilePath": "<projectFolder>/tsconfig.dist.json"
+  },
   "apiReport": {
     "enabled": true
   },
