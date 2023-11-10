@@ -1,3 +1,7 @@
+/**
+ * Tab interface.
+ * @public
+ */
 export interface Tab {
     /**
      * Id of the tab. Must be unique.

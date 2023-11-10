@@ -22,13 +22,13 @@ export interface Action {
 // @public
 export type ActionBarItem = ActionBarItemOnlyIcon | ActionBarItemWithLabel;
 
-// @public (undocumented)
+// @public
 export type ActionPosition = 'top' | 'bottom';
 
-// @public (undocumented)
+// @public
 export type ActionScrollBehavior = 'sticky' | 'scroll';
 
-// @public (undocumented)
+// @public
 export interface BreadcrumbsItem {
     icon?: Omit<Icon, 'backgroundColor'>;
     link?: Omit<Link, 'target' | 'text'>;
@@ -77,7 +77,7 @@ export interface ClosingActions {
 // @public (undocumented)
 export type ColorScheme = 'dark' | 'light' | 'auto';
 
-// @public (undocumented)
+// @public
 export interface Column<T extends object = any> {
     // Warning: (ae-forgotten-export) The symbol "ColumnAggregatorFunction" needs to be exported by the entry point index.d.ts
     aggregator?: ColumnAggregatorType | ColumnAggregatorFunction<T>;
@@ -98,7 +98,7 @@ export interface ColumnAggregate {
     value: any;
 }
 
-// @public (undocumented)
+// @public
 export enum ColumnAggregatorType {
     Average = "avg",
     Count = "count",
@@ -107,7 +107,7 @@ export enum ColumnAggregatorType {
     Sum = "sum"
 }
 
-// @public (undocumented)
+// @public
 export interface ColumnSorter {
     column: Column;
     direction: 'ASC' | 'DESC';
@@ -134,6 +134,7 @@ export namespace Components {
     export interface LimelBadge {
         "label"?: number | string;
     }
+    // (undocumented)
     export interface LimelBanner {
         "close": () => Promise<void>;
         "icon": string;
@@ -144,6 +145,7 @@ export namespace Components {
         "divider": string;
         "items": BreadcrumbsItem[];
     }
+    // (undocumented)
     export interface LimelButton {
         "disabled": boolean;
         "icon": string;
@@ -172,6 +174,7 @@ export namespace Components {
         "readonly": boolean;
         "required": boolean;
     }
+    // (undocumented)
     export interface LimelChipSet {
         "clearAllButton": boolean;
         "delimiter": string;
@@ -181,6 +184,7 @@ export namespace Components {
         "getEditMode": () => Promise<boolean>;
         "helperText": string;
         "inputType": 'search' | 'text';
+        "invalid": boolean;
         "label": string;
         "language": Languages;
         "leadingIcon": string;
@@ -200,6 +204,7 @@ export namespace Components {
         "suffix": string;
         "value": number;
     }
+    // (undocumented)
     export interface LimelCodeEditor {
         "colorScheme": ColorScheme;
         "fold": boolean;
@@ -209,6 +214,7 @@ export namespace Components {
         "readonly": boolean;
         "value": string;
     }
+    // (undocumented)
     export interface LimelCollapsibleSection {
         "actions": Action[];
         "header": string;
@@ -237,6 +243,7 @@ export namespace Components {
             featureSwitches: any;
         };
     }
+    // (undocumented)
     export interface LimelDatePicker {
         "disabled": boolean;
         "format": string;
@@ -257,6 +264,7 @@ export namespace Components {
         "heading": string | DialogHeading;
         "open": boolean;
     }
+    // (undocumented)
     export interface LimelDock {
         "accessibleLabel"?: string;
         "allowResize"?: boolean;
@@ -274,6 +282,7 @@ export namespace Components {
     export interface LimelFile {
         "accept": string;
         "disabled": boolean;
+        "invalid": boolean;
         "label": string;
         "language": Languages;
         "readonly": boolean;
@@ -308,6 +317,7 @@ export namespace Components {
         "justify": FlexContainerJustify;
         "reverse": boolean;
     }
+    // (undocumented)
     export interface LimelForm {
         "disabled": boolean;
         "errors": ValidationError;
@@ -339,6 +349,7 @@ export namespace Components {
         "name": string;
         "size": IconSize;
     }
+    // (undocumented)
     export interface LimelIconButton {
         "disabled": boolean;
         "elevated": boolean;
@@ -357,6 +368,7 @@ export namespace Components {
         "suffix"?: string;
         "value": number | string;
     }
+    // (undocumented)
     export interface LimelInputField {
         "completions": string[];
         "disabled": boolean;
@@ -382,10 +394,12 @@ export namespace Components {
         "type": InputType;
         "value": string;
     }
+    // (undocumented)
     export interface LimelLinearProgress {
         "indeterminate": boolean;
         "value": number;
     }
+    // (undocumented)
     export interface LimelList {
         "badgeIcons": boolean;
         "iconSize": IconSize;
@@ -396,6 +410,7 @@ export namespace Components {
     export interface LimelMarkdown {
         "value": string;
     }
+    // (undocumented)
     export interface LimelMenu {
         "badgeIcons": boolean;
         "disabled": boolean;
@@ -403,6 +418,7 @@ export namespace Components {
         "items": Array<MenuItem | ListSeparator>;
         "open": boolean;
         "openDirection": OpenDirection;
+        "surfaceWidth": SurfaceWidth;
     }
     // (undocumented)
     export interface LimelMenuList {
@@ -417,6 +433,7 @@ export namespace Components {
         "allowClicksElement": HTMLElement;
         "open": boolean;
     }
+    // (undocumented)
     export interface LimelPicker {
         "actionPosition": ActionPosition;
         "actions": Array<ListItem<Action>>;
@@ -426,6 +443,7 @@ export namespace Components {
         "disabled": boolean;
         "emptyResultMessage": string;
         "helperText": string;
+        "invalid": boolean;
         "label": string;
         "leadingIcon": string;
         "multiple": boolean;
@@ -453,6 +471,7 @@ export namespace Components {
         "position": 'fixed' | 'absolute';
         "visible": boolean;
     }
+    // (undocumented)
     export interface LimelProgressFlow {
         "disabled": boolean;
         "flowItems": FlowItem[];
@@ -464,6 +483,7 @@ export namespace Components {
         "item": FlowItem;
         "readonly": boolean;
     }
+    // (undocumented)
     export interface LimelSelect {
         "disabled": boolean;
         "helperText": string;
@@ -482,6 +502,7 @@ export namespace Components {
         "label"?: string;
         "link"?: Link;
     }
+    // (undocumented)
     export interface LimelSlider {
         "disabled": boolean;
         "factor": number;
@@ -503,6 +524,7 @@ export namespace Components {
         "show": () => Promise<void>;
         "timeout"?: number;
     }
+    // (undocumented)
     export interface LimelSpinner {
         "limeBranded": boolean;
         "size": SpinnerSize;
@@ -524,6 +546,7 @@ export namespace Components {
     export interface LimelTabBar {
         "tabs": Tab[];
     }
+    // (undocumented)
     export interface LimelTable {
         "activeRow": object;
         "aggregates": ColumnAggregate[];
@@ -617,7 +640,7 @@ export type FlexContainerDirection = 'horizontal' | 'vertical';
 // @public (undocumented)
 export type FlexContainerJustify = 'start' | 'end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
 
-// @public (undocumented)
+// @public
 export interface FlowItem extends ListItem {
     iconColor?: string;
     isOffProgress?: boolean;
@@ -668,7 +691,7 @@ export interface GridLayoutOptions extends FormLayoutOptions<FormLayoutType.Grid
     rowSpan?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface Icon {
     backgroundColor?: string;
     color?: string;
@@ -826,13 +849,13 @@ namespace JSX_2 {
     // (undocumented)
     interface LimelActionBarOverflowMenu {
         "items"?: Array<MenuItem | ListSeparator>;
-        // (undocumented)
         "onSelect"?: (event: LimelActionBarOverflowMenuCustomEvent<ActionBarItem>) => void;
         "openDirection"?: OpenDirection;
     }
     interface LimelBadge {
         "label"?: number | string;
     }
+    // (undocumented)
     interface LimelBanner {
         "icon"?: string;
         "message"?: string;
@@ -842,6 +865,7 @@ namespace JSX_2 {
         "items"?: BreadcrumbsItem[];
         "onSelect"?: (event: LimelBreadcrumbsCustomEvent<BreadcrumbsItem>) => void;
     }
+    // (undocumented)
     interface LimelButton {
         "disabled"?: boolean;
         "icon"?: string;
@@ -872,6 +896,7 @@ namespace JSX_2 {
         "readonly"?: boolean;
         "required"?: boolean;
     }
+    // (undocumented)
     interface LimelChipSet {
         "clearAllButton"?: boolean;
         "delimiter"?: string;
@@ -879,6 +904,7 @@ namespace JSX_2 {
         "emptyInputOnBlur"?: boolean;
         "helperText"?: string;
         "inputType"?: 'search' | 'text';
+        "invalid"?: boolean;
         "label"?: string;
         "language"?: Languages;
         "leadingIcon"?: string;
@@ -902,6 +928,7 @@ namespace JSX_2 {
         "suffix"?: string;
         "value"?: number;
     }
+    // (undocumented)
     interface LimelCodeEditor {
         "colorScheme"?: ColorScheme;
         "fold"?: boolean;
@@ -912,6 +939,7 @@ namespace JSX_2 {
         "readonly"?: boolean;
         "value"?: string;
     }
+    // (undocumented)
     interface LimelCollapsibleSection {
         "actions"?: Action[];
         "header"?: string;
@@ -945,6 +973,7 @@ namespace JSX_2 {
             featureSwitches: any;
         };
     }
+    // (undocumented)
     interface LimelDatePicker {
         "disabled"?: boolean;
         "format"?: string;
@@ -968,6 +997,7 @@ namespace JSX_2 {
         "onClosing"?: (event: LimelDialogCustomEvent<void>) => void;
         "open"?: boolean;
     }
+    // (undocumented)
     interface LimelDock {
         "accessibleLabel"?: string;
         "allowResize"?: boolean;
@@ -992,6 +1022,7 @@ namespace JSX_2 {
     interface LimelFile {
         "accept"?: string;
         "disabled"?: boolean;
+        "invalid"?: boolean;
         "label"?: string;
         "language"?: Languages;
         "onChange"?: (event: LimelFileCustomEvent<FileInfo>) => void;
@@ -1030,6 +1061,7 @@ namespace JSX_2 {
         "justify"?: FlexContainerJustify;
         "reverse"?: boolean;
     }
+    // (undocumented)
     interface LimelForm {
         "disabled"?: boolean;
         "errors"?: ValidationError;
@@ -1063,6 +1095,7 @@ namespace JSX_2 {
         "name"?: string;
         "size"?: IconSize;
     }
+    // (undocumented)
     interface LimelIconButton {
         "disabled"?: boolean;
         "elevated"?: boolean;
@@ -1081,6 +1114,7 @@ namespace JSX_2 {
         "suffix"?: string;
         "value"?: number | string;
     }
+    // (undocumented)
     interface LimelInputField {
         "completions"?: string[];
         "disabled"?: boolean;
@@ -1108,10 +1142,12 @@ namespace JSX_2 {
         "type"?: InputType;
         "value"?: string;
     }
+    // (undocumented)
     interface LimelLinearProgress {
         "indeterminate"?: boolean;
         "value"?: number;
     }
+    // (undocumented)
     interface LimelList {
         "badgeIcons"?: boolean;
         "iconSize"?: IconSize;
@@ -1124,6 +1160,7 @@ namespace JSX_2 {
     interface LimelMarkdown {
         "value"?: string;
     }
+    // (undocumented)
     interface LimelMenu {
         "badgeIcons"?: boolean;
         "disabled"?: boolean;
@@ -1133,6 +1170,7 @@ namespace JSX_2 {
         "onSelect"?: (event: LimelMenuCustomEvent<MenuItem | MenuItem[]>) => void;
         "open"?: boolean;
         "openDirection"?: OpenDirection;
+        "surfaceWidth"?: SurfaceWidth;
     }
     // (undocumented)
     interface LimelMenuList {
@@ -1149,6 +1187,7 @@ namespace JSX_2 {
         "onDismiss"?: (event: LimelMenuSurfaceCustomEvent<void>) => void;
         "open"?: boolean;
     }
+    // (undocumented)
     interface LimelPicker {
         "actionPosition"?: ActionPosition;
         "actions"?: Array<ListItem<Action>>;
@@ -1158,6 +1197,7 @@ namespace JSX_2 {
         "disabled"?: boolean;
         "emptyResultMessage"?: string;
         "helperText"?: string;
+        "invalid"?: boolean;
         "label"?: string;
         "leadingIcon"?: string;
         "multiple"?: boolean;
@@ -1189,6 +1229,7 @@ namespace JSX_2 {
         "position"?: 'fixed' | 'absolute';
         "visible"?: boolean;
     }
+    // (undocumented)
     interface LimelProgressFlow {
         "disabled"?: boolean;
         "flowItems"?: FlowItem[];
@@ -1202,6 +1243,7 @@ namespace JSX_2 {
         "onInteract"?: (event: LimelProgressFlowItemCustomEvent<void>) => void;
         "readonly"?: boolean;
     }
+    // (undocumented)
     interface LimelSelect {
         "disabled"?: boolean;
         "helperText"?: string;
@@ -1221,6 +1263,7 @@ namespace JSX_2 {
         "label"?: string;
         "link"?: Link;
     }
+    // (undocumented)
     interface LimelSlider {
         "disabled"?: boolean;
         "factor"?: number;
@@ -1244,6 +1287,7 @@ namespace JSX_2 {
         "onHide"?: (event: LimelSnackbarCustomEvent<void>) => void;
         "timeout"?: number;
     }
+    // (undocumented)
     interface LimelSpinner {
         "limeBranded"?: boolean;
         "size"?: SpinnerSize;
@@ -1268,6 +1312,7 @@ namespace JSX_2 {
         "onChangeTab"?: (event: LimelTabBarCustomEvent<Tab>) => void;
         "tabs"?: Tab[];
     }
+    // (undocumented)
     interface LimelTable {
         "activeRow"?: object;
         "aggregates"?: ColumnAggregate[];
@@ -1317,7 +1362,7 @@ export type Language = 'javascript' | 'jinja2' | 'json' | 'typescript';
 // @public (undocumented)
 export type Languages = 'da' | 'de' | 'en' | 'fi' | 'fr' | 'nb' | 'no' | 'nl' | 'sv';
 
-// @public (undocumented)
+// @public
 export type Layout = 'default' | 'stretchLastColumn' | 'stretchColumns' | 'lowDensity';
 
 // @public (undocumented)
@@ -1618,7 +1663,7 @@ export interface LimeSchemaOptions {
     layout?: FormLayoutOptions<any>;
 }
 
-// @public (undocumented)
+// @public
 export interface Link {
     href: string;
     target?: string;
@@ -1626,7 +1671,7 @@ export interface Link {
     title?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ListItem<T = any> {
     actions?: Array<MenuItem | ListSeparator>;
     disabled?: boolean;
@@ -1640,18 +1685,16 @@ export interface ListItem<T = any> {
     value?: T;
 }
 
-// @public (undocumented)
+// @public
 export interface ListSeparator {
-    // (undocumented)
     separator: true;
-    // (undocumented)
     text?: string;
 }
 
 // @public
 export type ListType = 'selectable' | 'radio' | 'checkbox';
 
-// @public (undocumented)
+// @public
 export interface MenuItem<T = any> {
     badge?: number | string;
     commandText?: string;
@@ -1670,7 +1713,7 @@ export type MenuListType = 'menu';
 // @public (undocumented)
 export type OfficeViewer = 'microsoft-office' | 'google-drive';
 
-// @public (undocumented)
+// @public
 export type OpenDirection = 'left-start' | 'left' | 'left-end' | 'right-start' | 'right' | 'right-end' | 'top-start' | 'top' | 'top-end' | 'bottom-start' | 'bottom' | 'bottom-end';
 
 // @public
@@ -1686,10 +1729,13 @@ export { Option_2 as Option }
 // @public
 export type Searcher = (query: string) => Promise<ListItem[]>;
 
-// @public (undocumented)
+// @public
 export type SpinnerSize = 'mini' | 'x-small' | 'small' | 'medium' | 'large';
 
-// @public (undocumented)
+// @public
+export type SurfaceWidth = 'inherit-from-items' | 'inherit-from-trigger' | 'inherit-from-menu';
+
+// @public
 export interface Tab {
     active?: boolean;
     badge?: number | string;
@@ -1699,14 +1745,14 @@ export interface Tab {
     text?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface TableComponent<T extends object = any> {
     data?: T;
     field?: string;
     value?: any;
 }
 
-// @public (undocumented)
+// @public
 export interface TableParams {
     page: number;
     sorters?: ColumnSorter[];

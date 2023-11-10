@@ -1,5 +1,6 @@
 /**
  * Describes an option for limel-select.
+ * @public
  */
 export interface Option<T extends string = string> {
     /**

@@ -31,6 +31,7 @@ export class ActionBarButton {
 
     /**
      * Fired when a action bar item has been clicked.
+     * @public
      */
     @Event()
     public select: EventEmitter<ActionBarItem | ListSeparator>;

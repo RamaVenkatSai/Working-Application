@@ -1,5 +1,9 @@
 import { MenuItem } from '../menu/menu.types';
 
+/**
+ * List item.
+ * @public
+ */
 export interface ListItem<T = any> {
     /**
      * Text to display in the list item.
@@ -37,30 +41,46 @@ export interface ListItem<T = any> {
     value?: T;
 
     /**
-     * List of actions to display as a menu at the end of the item
+     * List of actions to display as a menu at the end of the item.
      */
     actions?: Array<MenuItem | ListSeparator>;
 
     /**
-     * Component used to render in the list
+     * Component used to render the list item.
      */
     primaryComponent?: ListComponent;
 }
 
+/**
+ * Indicates that a separator should be rendered in the list.
+ * @public
+ */
 export interface ListSeparator {
+    /**
+     * Indicates that a separator should be rendered in the list.
+     */
     separator: true;
 
+    /**
+     * Text to display in the separator.
+     * This can be used as a label for the section of the list following the separator.
+     * If not specified, the separator will be rendered without a label.
+     */
     text?: string;
 }
 
+/**
+ * Component used to render a list item.
+ * @public
+ */
 export interface ListComponent {
     /**
-     * Name of the custom component
+     * The name of the custom component.
      */
     name: string;
 
     /**
-     * Properties to send to the custom component
+     * Properties to send to the custom component.
      */
     props?: Record<string, any>;
 }
