@@ -19,6 +19,15 @@ export const schema = {
                     description: 'Select the app language',
                     default: 'ua',
                     lime: {
+                        help: {
+                            value: '**Why do we need this information?** This enables our sales representatives to contact you personally. We will keep all your personal information safe!',
+                            readMoreLink: {
+                                href: 'https://www.lime-technologies.com/en/av-saas/',
+                                title: 'This link opens in a new tab',
+                                target: '_blank',
+                                text: 'Our Terms & Privacy Policies',
+                            },
+                        },
                         layout: {
                             icon: 'globe',
                         },
@@ -82,6 +91,15 @@ export const schema = {
                     type: 'boolean',
                     title: 'Receive email notifications',
                     lime: {
+                        help: {
+                            value: '**Why do we need this information?** This enables our sales representatives to contact you personally. We will keep all your personal information safe!',
+                            readMoreLink: {
+                                href: 'https://www.lime-technologies.com/en/av-saas/',
+                                title: 'This link opens in a new tab',
+                                target: '_blank',
+                                text: 'Our Terms & Privacy Policies',
+                            },
+                        },
                         component: {
                             name: 'limel-switch',
                         },
